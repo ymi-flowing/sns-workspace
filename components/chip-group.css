@@ -1,0 +1,83 @@
+﻿/* v2 ChipGroup — scoped under .ui-scope. */
+
+.ui-scope .ui-chipgroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-8);
+  min-width: 0;
+}
+.ui-scope .ui-chipgroup-label {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-chipgroup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-sp-8);
+}
+
+.ui-scope .ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-6);
+  background: transparent;
+  border: 1px solid var(--ui-border-primary);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-fw-medium);
+  cursor: pointer;
+  border-radius: var(--ui-radius-full);
+  white-space: nowrap;
+  transition: all var(--ui-transition);
+}
+.ui-scope .ui-chipgroup-sm .ui-chip {
+  height: 30px;
+  padding: 0 var(--ui-sp-12);
+  font-size: var(--ui-fs-xs);
+}
+.ui-scope .ui-chipgroup-md .ui-chip {
+  height: 36px;
+  padding: 0 var(--ui-sp-16);
+  font-size: var(--ui-fs-sm);
+}
+
+.ui-scope .ui-chip:hover:not(:disabled):not(.ui-chip-active) {
+  border-color: var(--ui-border-secondary);
+  background: var(--ui-bg-hover);
+}
+.ui-scope .ui-chip:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Active state — brand green outline + text + subtle tinted bg (per screenshot) */
+.ui-scope .ui-chip-active {
+  background: rgba(100, 139, 160, 0.1);
+  border-color: var(--ui-brand-500);
+  color: var(--ui-brand-500);
+  box-shadow: inset 0 0 0 1px var(--ui-brand-500);
+}
+.ui-scope .ui-chip-active:hover:not(:disabled) {
+  background: rgba(100, 139, 160, 0.16);
+}
+
+.ui-scope .ui-chip-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.ui-scope .ui-chip-icon svg { width: 14px; height: 14px; }
+
+/* Selected summary line */
+.ui-scope .ui-chipgroup-summary {
+  font-size: var(--ui-fs-xs);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-chipgroup-summary-label {
+  color: var(--ui-text-tertiary);
+}

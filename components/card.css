@@ -1,0 +1,144 @@
+/* v2 Card — scoped under .ui-scope. */
+
+.ui-scope .ui-card {
+  background: var(--ui-bg-secondary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-lg);
+  color: var(--ui-text-primary);
+  box-shadow: var(--ui-shadow-sm);
+  transition:
+    background var(--ui-transition),
+    border-color var(--ui-transition),
+    transform var(--ui-transition),
+    box-shadow var(--ui-transition);
+}
+/* Nested cards sit flat inside their parent — no stacked shadow. */
+.ui-scope .ui-card-nested { background: var(--ui-bg-tertiary); box-shadow: none; }
+
+/* Padding scale */
+.ui-scope .ui-card-p-none { padding: 0; }
+.ui-scope .ui-card-p-sm   { padding: var(--ui-sp-12); }
+.ui-scope .ui-card-p-md   { padding: var(--ui-sp-16); }
+.ui-scope .ui-card-p-lg   { padding: var(--ui-sp-24); }
+
+/* Interactive variant — hover lift + border accent */
+.ui-scope .ui-card-interactive {
+  cursor: pointer;
+  text-align: left;
+}
+.ui-scope .ui-card-interactive:hover {
+  border-color: var(--ui-border-secondary);
+  background: var(--ui-grey-850);
+  transform: translateY(-1px);
+  box-shadow: var(--ui-shadow-md);
+}
+.ui-scope .ui-card-interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--ui-shadow-sm);
+}
+.ui-scope .ui-card-interactive:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* ---------- Header ---------- */
+.ui-scope .ui-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--ui-sp-12);
+  margin-bottom: var(--ui-sp-16);
+}
+.ui-scope .ui-card-header-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-4);
+}
+.ui-scope .ui-card-title {
+  font-size: var(--ui-fs-lg);
+  line-height: var(--ui-lh-lg);
+  font-weight: var(--ui-fw-semibold);
+  color: var(--ui-text-primary);
+  margin: 0;
+}
+.ui-scope .ui-card-subtitle {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  color: var(--ui-text-tertiary);
+  margin: 0;
+}
+.ui-scope .ui-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-sp-8);
+  flex-shrink: 0;
+}
+
+/* ---------- Footer ---------- */
+.ui-scope .ui-card-footer {
+  display: flex;
+  gap: var(--ui-sp-8);
+  align-items: center;
+  margin-top: var(--ui-sp-16);
+  padding-top: var(--ui-sp-16);
+  border-top: 1px solid var(--ui-border-primary);
+}
+.ui-scope .ui-card-footer-right   { justify-content: flex-end; }
+.ui-scope .ui-card-footer-left    { justify-content: flex-start; }
+.ui-scope .ui-card-footer-between { justify-content: space-between; }
+
+/* ---------- KpiCard ---------- */
+.ui-scope .ui-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-6);
+  min-width: 0;
+}
+.ui-scope .ui-kpi-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-sp-8);
+}
+.ui-scope .ui-kpi-label {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ui-text-tertiary);
+  font-weight: var(--ui-fw-medium);
+}
+.ui-scope .ui-kpi-value {
+  font-size: var(--ui-fs-display-xs);
+  line-height: var(--ui-lh-display-xs);
+  font-weight: var(--ui-fw-semibold);
+  color: var(--ui-text-primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.ui-scope .ui-kpi-sub {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-kpi-brand   .ui-kpi-value { color: var(--ui-brand-500); }
+.ui-scope .ui-kpi-success .ui-kpi-value { color: var(--ui-success-500); }
+.ui-scope .ui-kpi-warn    .ui-kpi-value { color: var(--ui-warn-500); }
+.ui-scope .ui-kpi-error   .ui-kpi-value { color: var(--ui-error-500); }
+
+/* KPI trend indicator — just the number + arrow in brand green, no chip bg. */
+.ui-scope .ui-kpi-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-4);
+  font-size: var(--ui-fs-sm);
+  line-height: 1;
+  font-weight: var(--ui-fw-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-kpi-trend svg {
+  width: 12px;
+  height: 12px;
+}

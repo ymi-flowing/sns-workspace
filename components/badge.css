@@ -1,0 +1,107 @@
+﻿/* v2 Badge — scoped under .ui-scope. "Pill-color" treatment: tinted bg,
+   colored text, matching dot. Keeps the whole badge compact and legible. */
+
+.ui-scope .ui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-6);
+  border-radius: var(--ui-radius-md);
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-fw-medium);
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* ---------- Sizes — spacier, button-ish footprint ---------- */
+.ui-scope .ui-badge-sm {
+  padding: var(--ui-sp-6) var(--ui-sp-10);
+  font-size: var(--ui-fs-xs);
+  min-height: 24px;
+}
+.ui-scope .ui-badge-md {
+  padding: var(--ui-sp-8) var(--ui-sp-12);
+  font-size: var(--ui-fs-sm);
+  min-height: 28px;
+}
+
+/* Generic icon slot (leading / trailing) */
+.ui-scope .ui-badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ui-scope .ui-badge-icon svg {
+  width: 12px;
+  height: 12px;
+}
+.ui-scope .ui-badge-md .ui-badge-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ---------- Dot ---------- */
+.ui-scope .ui-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---------- Remove (×) button ---------- */
+.ui-scope .ui-badge-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: var(--ui-sp-4);
+  margin-right: -4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+  border-radius: var(--ui-radius-xs);
+  transition: opacity var(--ui-transition), background var(--ui-transition);
+}
+.ui-scope .ui-badge-remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.15);
+}
+.ui-scope .ui-badge-remove svg {
+  width: 10px;
+  height: 10px;
+}
+
+/* ---------- Color variants ----------
+   Pattern: bg = color/alpha-14, border = color/alpha-30, text = full color. */
+
+.ui-scope .ui-badge-grey {
+  background: rgba(159, 159, 159, 0.14);
+  color: var(--ui-text-secondary);
+  box-shadow: inset 0 0 0 1px rgba(159, 159, 159, 0.25);
+}
+.ui-scope .ui-badge-brand {
+  background: rgba(100, 139, 160, 0.14);
+  color: var(--ui-brand-500);
+  box-shadow: inset 0 0 0 1px rgba(100, 139, 160, 0.3);
+}
+.ui-scope .ui-badge-success {
+  background: rgba(23, 178, 106, 0.14);
+  color: var(--ui-success-500);
+  box-shadow: inset 0 0 0 1px rgba(23, 178, 106, 0.3);
+}
+.ui-scope .ui-badge-warn {
+  background: rgba(247, 144, 9, 0.14);
+  color: var(--ui-warn-500);
+  box-shadow: inset 0 0 0 1px rgba(247, 144, 9, 0.3);
+}
+.ui-scope .ui-badge-error {
+  background: rgba(255, 89, 89, 0.14);
+  color: var(--ui-error-500);
+  box-shadow: inset 0 0 0 1px rgba(255, 89, 89, 0.3);
+}

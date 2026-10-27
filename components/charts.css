@@ -1,0 +1,194 @@
+/* v2 charts — scoped under .ui-scope. Shared styles for LineChart + DonutChart. */
+
+.ui-scope .ui-chart {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-12);
+  font-family: var(--ui-font-family);
+}
+.ui-scope .ui-chart-canvas {
+  position: relative;
+  width: 100%;
+}
+.ui-scope .ui-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Legend (shared) ---------- */
+.ui-scope .ui-chart-legend {
+  display: flex;
+  gap: var(--ui-sp-16);
+  flex-wrap: wrap;
+  font-size: var(--ui-fs-xs);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-6);
+  color: var(--ui-text-secondary);
+}
+.ui-scope .ui-chart-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.ui-scope .ui-chart-legend-swatch-dashed {
+  background: repeating-linear-gradient(90deg, currentColor 0, currentColor 2px, transparent 2px, transparent 4px) !important;
+}
+
+/* ---------- LineChart ---------- */
+.ui-scope .ui-chart-gridline line {
+  stroke: var(--ui-border-primary);
+  stroke-dasharray: 2 4;
+  stroke-opacity: 0.5;
+}
+.ui-scope .ui-chart-tick {
+  font-size: 10px;
+  fill: var(--ui-text-tertiary);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--ui-font-family);
+}
+.ui-scope .ui-chart-crosshair {
+  stroke: var(--ui-text-tertiary);
+  stroke-dasharray: 3 3;
+  stroke-opacity: 0.6;
+  pointer-events: none;
+}
+.ui-scope .ui-chart-point {
+  transition: r 120ms ease, opacity 120ms ease;
+  pointer-events: none;
+}
+
+.ui-scope .ui-chart-tt {
+  position: absolute;
+  transform: translate(-50%, -8px);
+  padding: var(--ui-sp-8) var(--ui-sp-10);
+  background: var(--ui-grey-950);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-sm);
+  box-shadow: var(--ui-shadow-md);
+  color: var(--ui-text-primary);
+  font-size: var(--ui-fs-xs);
+  pointer-events: none;
+  min-width: 160px;
+  z-index: 2;
+  animation: ui-chart-tt-fade 120ms ease;
+}
+.ui-scope .ui-chart-tt-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ui-text-tertiary);
+  margin-bottom: var(--ui-sp-6);
+}
+.ui-scope .ui-chart-tt-row {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: var(--ui-sp-6);
+  padding: 2px 0;
+  font-variant-numeric: tabular-nums;
+}
+.ui-scope .ui-chart-tt-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.ui-scope .ui-chart-tt-name {
+  color: var(--ui-text-secondary);
+}
+
+@keyframes ui-chart-tt-fade {
+  from { opacity: 0; transform: translate(-50%, -4px); }
+  to   { opacity: 1; transform: translate(-50%, -8px); }
+}
+
+/* ---------- DonutChart ---------- */
+.ui-scope .ui-donut-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ui-sp-32);
+  flex-wrap: wrap;
+}
+/* Override the generic .ui-chart svg { width: 100% } rule for the donut.
+   That rule has higher specificity (2 classes + element) than this one,
+   so !important is used to keep the intrinsic size from the inline attrs. */
+.ui-scope .ui-donut-svg {
+  display: block;
+  flex-shrink: 0;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+}
+.ui-scope .ui-donut-slice {
+  cursor: pointer;
+  transition: opacity 150ms ease;
+}
+.ui-scope .ui-donut-center-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  fill: var(--ui-text-tertiary);
+  font-weight: var(--ui-fw-semibold);
+}
+.ui-scope .ui-donut-center-value {
+  font-size: var(--ui-fs-lg);
+  font-weight: var(--ui-fw-semibold);
+  fill: var(--ui-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-scope .ui-donut-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+  flex: 1;
+  min-width: 220px;
+}
+.ui-scope .ui-donut-legend-item {
+  display: grid;
+  grid-template-columns: 10px 1fr auto auto;
+  align-items: center;
+  gap: var(--ui-sp-10);
+  padding: var(--ui-sp-6) var(--ui-sp-8);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-fs-sm);
+  cursor: default;
+  transition: background 120ms ease;
+}
+.ui-scope .ui-donut-legend-item:hover,
+.ui-scope .ui-donut-legend-item-active {
+  background: var(--ui-bg-hover);
+}
+.ui-scope .ui-donut-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.ui-scope .ui-donut-legend-label {
+  color: var(--ui-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-scope .ui-donut-legend-value {
+  color: var(--ui-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.ui-scope .ui-donut-legend-pct {
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-xs);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}

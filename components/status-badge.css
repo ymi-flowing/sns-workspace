@@ -1,0 +1,72 @@
+/* v2 StatusBadge — the Badge-with-dropdown composite used in the orders
+   table Estado column. Scoped under .ui-scope. */
+
+.ui-scope .ui-status-badge {
+  position: relative;
+  display: inline-flex;
+}
+
+/* The trigger wraps the Badge; add hover/focus affordances so it reads as
+   "clickable" without changing the badge visuals too much. */
+.ui-scope .ui-status-badge-trigger {
+  cursor: pointer;
+  outline: none;
+  border-radius: var(--ui-radius-md);
+  transition: filter var(--ui-transition);
+}
+.ui-scope .ui-status-badge-trigger:hover { filter: brightness(1.1); }
+.ui-scope .ui-status-badge-trigger:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-status-badge-trigger .ui-badge-icon {
+  opacity: 0.75;
+}
+.ui-scope .ui-status-badge-trigger:hover .ui-badge-icon { opacity: 1; }
+
+/* ---------- Dropdown menu (portaled to <body> → use fixed) ---------- */
+.ui-scope .ui-status-menu,
+.ui-status-menu-portal {
+  z-index: 1000;
+  min-width: 220px;
+  list-style: none;
+  padding: var(--ui-sp-6);
+  margin: 0;
+  background: var(--ui-bg-secondary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+}
+.ui-status-menu-portal {
+  position: fixed;
+}
+/* The portaled menu lives outside .ui-scope but we add .ui-scope on it
+   so our token custom-properties cascade in. Reset the inherited .ui-scope
+   layout bits so the menu doesn't get the dashboard shell padding. */
+.ui-status-menu-portal.ui-scope {
+  padding: var(--ui-sp-6);
+  min-height: 0;
+  background: var(--ui-bg-secondary);
+}
+.ui-scope .ui-status-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ui-sp-8);
+  padding: var(--ui-sp-6) var(--ui-sp-8);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  transition: background var(--ui-transition);
+}
+.ui-scope .ui-status-menu-item:hover { background: var(--ui-bg-hover); }
+.ui-scope .ui-status-menu-item-current { background: var(--ui-bg-hover); }
+.ui-scope .ui-status-menu-check {
+  display: inline-flex;
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-status-menu-check svg {
+  width: 14px;
+  height: 14px;
+}

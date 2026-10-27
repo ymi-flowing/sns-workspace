@@ -1,0 +1,100 @@
+﻿/* v2 SegmentedControl + ToggleButtonGroup — scoped under .ui-scope. */
+
+/* ---------- SegmentedControl (iOS pill style) ---------- */
+.ui-scope .ui-seg {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--ui-bg-tertiary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-lg);
+  gap: 2px;
+}
+.ui-scope .ui-seg-full { display: flex; width: 100%; }
+
+.ui-scope .ui-seg-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--ui-text-tertiary);
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-fw-medium);
+  cursor: pointer;
+  padding: 0 var(--ui-sp-12);
+  border-radius: var(--ui-radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-sp-6);
+  white-space: nowrap;
+  transition: all var(--ui-transition);
+}
+.ui-scope .ui-seg-sm .ui-seg-btn { height: 30px; font-size: var(--ui-fs-sm); }
+.ui-scope .ui-seg-md .ui-seg-btn { height: 36px; font-size: var(--ui-fs-sm); }
+
+.ui-scope .ui-seg-btn:hover:not(:disabled):not(.ui-seg-btn-active) {
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-seg-btn-active {
+  background: var(--ui-bg-secondary);
+  color: var(--ui-text-primary);
+  box-shadow: var(--ui-shadow-xs);
+}
+.ui-scope .ui-seg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ui-scope .ui-seg-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-seg-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.ui-scope .ui-seg-icon svg { width: 14px; height: 14px; }
+
+/* ---------- ToggleButtonGroup (connected outlined buttons) ---------- */
+.ui-scope .ui-tbg {
+  display: inline-flex;
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  overflow: hidden;
+  background: var(--ui-bg-secondary);
+}
+.ui-scope .ui-tbg-btn {
+  background: transparent;
+  border: none;
+  color: var(--ui-text-secondary);
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-fw-semibold);
+  cursor: pointer;
+  padding: 0 var(--ui-sp-12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-sp-6);
+  white-space: nowrap;
+  transition: all var(--ui-transition);
+  border-right: 1px solid var(--ui-border-primary);
+}
+.ui-scope .ui-tbg-btn:last-child { border-right: none; }
+.ui-scope .ui-tbg-sm .ui-tbg-btn { height: 36px; font-size: var(--ui-fs-sm); }
+.ui-scope .ui-tbg-md .ui-tbg-btn { height: 40px; font-size: var(--ui-fs-sm); }
+
+.ui-scope .ui-tbg-btn:hover:not(:disabled):not(.ui-tbg-btn-active) {
+  background: var(--ui-bg-hover);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-tbg-btn-active {
+  background: rgba(100, 139, 160, 0.14);
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-tbg-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ui-scope .ui-tbg-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+  position: relative;
+  z-index: 1;
+}
+.ui-scope .ui-tbg-icon {
+  display: inline-flex;
+  align-items: center;
+}
+.ui-scope .ui-tbg-icon svg { width: 14px; height: 14px; }

@@ -1,0 +1,190 @@
+/* MatrixTable — scoped under .ui-scope. Lives inside a .ui-card for the floating shell. */
+
+.ui-scope .ui-matrix-wrap {
+  overflow-x: auto;
+  overflow-y: visible;
+  margin: calc(var(--ui-sp-4) * -1);  /* trim the outer padding away so the table flush-fills a Card */
+}
+
+.ui-scope .ui-matrix {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Sticky metric column ---------- */
+
+.ui-scope .ui-matrix-sticky-left {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+/* ---------- Header rows ---------- */
+
+.ui-scope .ui-matrix-group-row th {
+  padding: var(--ui-sp-8) var(--ui-sp-10);
+  text-align: center;
+  font-weight: var(--ui-fw-bold);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ui-border-primary);
+}
+
+.ui-scope .ui-matrix-corner {
+  background: var(--ui-bg-tertiary);
+  border-bottom: 1px solid var(--ui-border-primary);
+}
+
+.ui-scope .ui-matrix-group {
+  background: var(--ui-bg-tertiary);
+  color: var(--ui-text-secondary);
+}
+
+/* Regional tints — soft tokens from the semantic palette */
+.ui-scope .ui-matrix-group-purple { background: rgba(139, 92, 246, 0.14); color: #c4b5fd; }
+.ui-scope .ui-matrix-group-sky    { background: rgba( 56, 189, 248, 0.14); color: #7dd3fc; }
+.ui-scope .ui-matrix-group-teal   { background: rgba( 20, 184, 166, 0.14); color: #5eead4; }
+.ui-scope .ui-matrix-group-rose   { background: rgba(244,  63,  94, 0.14); color: #fda4af; }
+.ui-scope .ui-matrix-group-brand  { background: rgba(100, 139, 160, 0.18); color: var(--ui-brand-300); }
+.ui-scope .ui-matrix-group-slate  { background: var(--ui-bg-tertiary);     color: var(--ui-text-secondary); }
+
+/* Second row: property abbrs */
+.ui-scope .ui-matrix-abbr-row th {
+  padding: var(--ui-sp-8) var(--ui-sp-6);
+  background: var(--ui-bg-secondary);
+  color: var(--ui-text-primary);
+  font-weight: var(--ui-fw-bold);
+  font-size: var(--ui-fs-xs);
+  border-bottom: 2px solid var(--ui-border-primary);
+  text-align: center;
+  min-width: 56px;
+}
+
+.ui-scope .ui-matrix-metric-head {
+  text-align: left !important;
+  padding-left: var(--ui-sp-12) !important;
+  color: var(--ui-text-tertiary) !important;
+  font-weight: var(--ui-fw-semibold) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px !important;
+  min-width: 140px;
+  background: var(--ui-bg-secondary);
+}
+
+.ui-scope .ui-matrix-portfolio-head,
+.ui-scope .ui-matrix-total-head {
+  background: var(--ui-bg-tertiary);
+  color: var(--ui-text-primary);
+  text-align: center;
+  font-weight: var(--ui-fw-bold);
+  padding: var(--ui-sp-8) var(--ui-sp-10);
+  min-width: 72px;
+  border-left: 1px solid var(--ui-border-primary);
+}
+
+/* ---------- Body rows ---------- */
+
+.ui-scope .ui-matrix-row td,
+.ui-scope .ui-matrix-row th {
+  padding: var(--ui-sp-8) var(--ui-sp-6);
+  border-bottom: 1px solid var(--ui-border-primary);
+}
+
+.ui-scope .ui-matrix-row:hover td,
+.ui-scope .ui-matrix-row:hover .ui-matrix-metric-cell {
+  background: var(--ui-bg-hover);
+}
+
+/* Alt-row shading on cells; the sticky metric cell gets its own alt class so the
+   sticky background still obscures scroll content underneath. */
+.ui-scope .ui-matrix-row-alt td { background: rgba(255, 255, 255, 0.02); }
+
+/* Metric cell (sticky left) */
+.ui-scope .ui-matrix-metric-cell {
+  text-align: left;
+  padding-left: var(--ui-sp-12) !important;
+  color: var(--ui-text-primary);
+  font-weight: var(--ui-fw-medium);
+  background: var(--ui-bg-secondary);
+  border-right: 1px solid var(--ui-border-primary);
+  min-width: 140px;
+  white-space: nowrap;
+}
+.ui-scope .ui-matrix-metric-cell-alt { background: var(--ui-bg-tertiary); }
+
+/* Value cells */
+.ui-scope .ui-matrix-cell {
+  text-align: center;
+  color: var(--ui-text-secondary);
+  transition: background var(--ui-transition-fast);
+}
+
+/* Alerted cell background — subtle red/blue tint matching the dashboard convention */
+.ui-scope .ui-matrix-cell-alert {
+  background: rgba(220, 38, 38, 0.14) !important;
+}
+
+.ui-scope .ui-matrix-cell-clickable {
+  cursor: pointer;
+}
+.ui-scope .ui-matrix-cell-clickable:hover {
+  background: rgba(100, 139, 160, 0.18);
+}
+
+/* Portfolio total column */
+.ui-scope .ui-matrix-total-cell {
+  text-align: center;
+  background: var(--ui-bg-tertiary);
+  color: var(--ui-text-primary);
+  font-weight: var(--ui-fw-bold);
+  border-left: 1px solid var(--ui-border-primary);
+}
+
+/* Divider row — a thin colored band to separate metric groups */
+.ui-scope .ui-matrix-divider-row td {
+  padding: 0;
+  height: 6px;
+  background: var(--ui-bg-tertiary);
+  border-bottom: 1px solid var(--ui-border-primary);
+  border-top: 1px solid var(--ui-border-primary);
+}
+
+/* Last row — no bottom border */
+.ui-scope .ui-matrix tbody tr:last-child td,
+.ui-scope .ui-matrix tbody tr:last-child th {
+  border-bottom: none;
+}
+
+/* ---------- Text-color helper classes for row.color ---------- */
+.ui-scope .ui-matrix-text-primary { color: var(--ui-text-primary); font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-matrix-text-brand   { color: var(--ui-brand-400); font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-matrix-text-success { color: var(--ui-success-500); font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-matrix-text-warn    { color: var(--ui-warn-500); font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-matrix-text-error   { color: var(--ui-error-500); font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-matrix-text-muted   { color: var(--ui-text-tertiary); }
+
+/* Light-mode brand tint — darker variant reads better on white */
+.ui-scope[data-theme="light"] .ui-matrix-text-brand   { color: var(--ui-brand-700); }
+.ui-scope[data-theme="light"] .ui-matrix-text-success { color: var(--ui-success-600); }
+.ui-scope[data-theme="light"] .ui-matrix-text-warn    { color: var(--ui-warn-600); }
+.ui-scope[data-theme="light"] .ui-matrix-text-error   { color: var(--ui-error-600); }
+
+/* ---------- Light-theme overrides ---------- */
+
+.ui-scope[data-theme="light"] .ui-matrix-row-alt td { background: rgba(16, 24, 40, 0.025); }
+.ui-scope[data-theme="light"] .ui-matrix-cell-alert { background: rgba(220, 38, 38, 0.10) !important; }
+.ui-scope[data-theme="light"] .ui-matrix-cell-clickable:hover { background: rgba(100, 139, 160, 0.14); }
+
+/* Light-mode regional tints — slightly stronger text, softer bg */
+.ui-scope[data-theme="light"] .ui-matrix-group-purple { background: rgba(139, 92, 246, 0.10); color: #6d28d9; }
+.ui-scope[data-theme="light"] .ui-matrix-group-sky    { background: rgba( 56, 189, 248, 0.10); color: #0369a1; }
+.ui-scope[data-theme="light"] .ui-matrix-group-teal   { background: rgba( 20, 184, 166, 0.10); color: #0f766e; }
+.ui-scope[data-theme="light"] .ui-matrix-group-rose   { background: rgba(244,  63,  94, 0.10); color: #be123c; }
+.ui-scope[data-theme="light"] .ui-matrix-group-brand  { background: rgba(100, 139, 160, 0.14); color: var(--ui-brand-700); }

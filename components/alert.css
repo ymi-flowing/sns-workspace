@@ -1,0 +1,88 @@
+/* v2 Alert — scoped under .ui-scope. */
+
+.ui-scope .ui-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ui-sp-12);
+  padding: var(--ui-sp-12) var(--ui-sp-16);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid transparent;
+  background: var(--ui-bg-secondary);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-md);
+}
+
+/* Tones */
+.ui-scope .ui-alert-info {
+  background: rgba(159, 159, 159, 0.08);
+  border-color: var(--ui-border-primary);
+}
+.ui-scope .ui-alert-info .ui-alert-icon { color: var(--ui-text-secondary); }
+
+.ui-scope .ui-alert-success {
+  background: rgba(23, 178, 106, 0.08);
+  border-color: rgba(23, 178, 106, 0.3);
+}
+.ui-scope .ui-alert-success .ui-alert-icon { color: var(--ui-success-500); }
+
+.ui-scope .ui-alert-warn {
+  background: rgba(247, 144, 9, 0.08);
+  border-color: rgba(247, 144, 9, 0.3);
+}
+.ui-scope .ui-alert-warn .ui-alert-icon { color: var(--ui-warn-500); }
+
+.ui-scope .ui-alert-error {
+  background: rgba(255, 89, 89, 0.08);
+  border-color: rgba(255, 89, 89, 0.3);
+}
+.ui-scope .ui-alert-error .ui-alert-icon { color: var(--ui-error-500); }
+
+/* Pieces */
+.ui-scope .ui-alert-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  margin-top: 2px;
+}
+.ui-scope .ui-alert-icon svg { width: 20px; height: 20px; }
+
+.ui-scope .ui-alert-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-4);
+}
+.ui-scope .ui-alert-title {
+  font-weight: var(--ui-fw-semibold);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-alert-desc {
+  color: var(--ui-text-secondary);
+  font-size: var(--ui-fs-sm);
+}
+.ui-scope .ui-alert-actions {
+  display: flex;
+  gap: var(--ui-sp-8);
+  margin-top: var(--ui-sp-8);
+}
+.ui-scope .ui-alert-close {
+  background: transparent;
+  border: none;
+  color: var(--ui-text-tertiary);
+  cursor: pointer;
+  padding: var(--ui-sp-2) var(--ui-sp-4);
+  border-radius: var(--ui-radius-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2px;
+  margin-right: -4px;
+  transition: all var(--ui-transition);
+}
+.ui-scope .ui-alert-close:hover {
+  color: var(--ui-text-primary);
+  background: var(--ui-bg-hover);
+}
+.ui-scope .ui-alert-close svg { width: 14px; height: 14px; }

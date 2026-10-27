@@ -1,0 +1,98 @@
+/* v2 Tooltip — scoped under .ui-scope. */
+
+.ui-scope .ui-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.ui-scope .ui-tooltip {
+  position: absolute;
+  z-index: 60;
+  padding: var(--ui-sp-6) var(--ui-sp-10);
+  background: var(--ui-grey-950);
+  color: var(--ui-text-primary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-sm);
+  box-shadow: var(--ui-shadow-md);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  font-weight: var(--ui-fw-medium);
+  pointer-events: none;
+  /* Default: let text wrap at the maxWidth so plain-text tooltips with long
+     copy respect the configured width instead of overflowing. Short labels
+     fit on one line anyway. */
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  animation: ui-tt-fade 100ms ease;
+}
+
+/* Sides */
+.ui-scope .ui-tooltip-top    { bottom: calc(100% + 8px); }
+.ui-scope .ui-tooltip-bottom { top: calc(100% + 8px); }
+.ui-scope .ui-tooltip-left   { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+.ui-scope .ui-tooltip-right  { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+
+/* Horizontal alignment for top/bottom tooltips */
+.ui-scope .ui-tooltip-top.ui-tooltip-align-center,
+.ui-scope .ui-tooltip-bottom.ui-tooltip-align-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ui-scope .ui-tooltip-top.ui-tooltip-align-start,
+.ui-scope .ui-tooltip-bottom.ui-tooltip-align-start { left: 0; }
+.ui-scope .ui-tooltip-top.ui-tooltip-align-end,
+.ui-scope .ui-tooltip-bottom.ui-tooltip-align-end { right: 0; }
+
+/* Arrow */
+.ui-scope .ui-tooltip-arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--ui-grey-950);
+  border: 1px solid var(--ui-border-primary);
+  transform: rotate(45deg);
+}
+.ui-scope .ui-tooltip-top .ui-tooltip-arrow {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-top: none;
+  border-left: none;
+}
+.ui-scope .ui-tooltip-bottom .ui-tooltip-arrow {
+  top: -5px;
+  left: 50%;
+  margin-left: -4px;
+  border-bottom: none;
+  border-right: none;
+}
+.ui-scope .ui-tooltip-left .ui-tooltip-arrow {
+  right: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-left: none;
+  border-bottom: none;
+}
+.ui-scope .ui-tooltip-right .ui-tooltip-arrow {
+  left: -5px;
+  top: 50%;
+  margin-top: -4px;
+  border-right: none;
+  border-top: none;
+}
+
+@keyframes ui-tt-fade {
+  from { opacity: 0; transform: translateX(-50%) translateY(2px); }
+  to   { opacity: 1; }
+}
+.ui-scope .ui-tooltip-left,
+.ui-scope .ui-tooltip-right { animation-name: ui-tt-fade-side; }
+@keyframes ui-tt-fade-side {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-scope .ui-tooltip { animation: none; }
+}

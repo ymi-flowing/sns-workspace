@@ -1,0 +1,198 @@
+﻿/* v2 Button — scoped under .ui-scope via the (v2) layout. */
+
+.ui-scope .ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ui-sp-8);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  font-family: var(--ui-font-family);
+  font-weight: var(--ui-fw-semibold);
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background var(--ui-transition),
+    border-color var(--ui-transition),
+    color var(--ui-transition),
+    box-shadow var(--ui-transition);
+  user-select: none;
+}
+.ui-scope .ui-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.ui-scope .ui-btn-full { width: 100%; }
+
+/* ---------- Sizes ---------- */
+.ui-scope .ui-btn-sm { height: 36px; padding: 0 var(--ui-sp-12); font-size: var(--ui-fs-sm); line-height: var(--ui-lh-sm); }
+.ui-scope .ui-btn-md { height: 40px; padding: 0 var(--ui-sp-16); font-size: var(--ui-fs-sm); line-height: var(--ui-lh-sm); }
+.ui-scope .ui-btn-lg { height: 44px; padding: 0 var(--ui-sp-20); font-size: var(--ui-fs-md); line-height: var(--ui-lh-md); }
+.ui-scope .ui-btn-xl { height: 48px; padding: 0 var(--ui-sp-24); font-size: var(--ui-fs-md); line-height: var(--ui-lh-md); }
+
+/* Icon-only: match the text-button square footprint (user prefers full size).
+   Shrink the glyph instead so it has breathing room inside the box. */
+.ui-scope .ui-btn-icon-only.ui-btn-sm { width: 36px; height: 36px; padding: 0; }
+.ui-scope .ui-btn-icon-only.ui-btn-md { width: 40px; height: 40px; padding: 0; }
+.ui-scope .ui-btn-icon-only.ui-btn-lg { width: 44px; height: 44px; padding: 0; }
+.ui-scope .ui-btn-icon-only.ui-btn-xl { width: 48px; height: 48px; padding: 0; }
+
+/* Icon sizing */
+.ui-scope .ui-btn-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
+.ui-scope .ui-btn-icon svg { width: 16px; height: 16px; }
+.ui-scope .ui-btn-lg .ui-btn-icon svg,
+.ui-scope .ui-btn-xl .ui-btn-icon svg { width: 20px; height: 20px; }
+/* Icon-only glyph — ~30% smaller than the surrounding frame so there is
+   generous padding inside the box. Even pixel sizes keep SVG strokes crisp. */
+.ui-scope .ui-btn-icon-only.ui-btn-sm .ui-btn-icon svg { width: 10px; height: 10px; }
+.ui-scope .ui-btn-icon-only.ui-btn-md .ui-btn-icon svg { width: 12px; height: 12px; }
+.ui-scope .ui-btn-icon-only.ui-btn-lg .ui-btn-icon svg { width: 12px; height: 12px; }
+.ui-scope .ui-btn-icon-only.ui-btn-xl .ui-btn-icon svg { width: 14px; height: 14px; }
+
+/* ---------- Icon-only treatment ----------
+   No borders anywhere. Primary + destructive KEEP their filled bg (that's
+   their visual identity for emphatic actions) with WHITE icons so the
+   glyph reads clearly against the color. Every other hierarchy goes
+   ghost — transparent bg + hierarchy-colored icon + hover tint. */
+.ui-scope .ui-btn-icon-only {
+  border-color: transparent !important;
+}
+
+/* Primary: filled green + WHITE icon (inherit filled bg from .ui-btn-primary; only force the icon color). */
+.ui-scope .ui-btn-icon-only.ui-btn-primary {
+  color: #fff;
+}
+
+/* Destructive: ghost red (like tertiary-color but in error semantic). */
+.ui-scope .ui-btn-icon-only.ui-btn-destructive {
+  background: transparent !important;
+  color: var(--ui-error-500);
+}
+.ui-scope .ui-btn-icon-only.ui-btn-destructive:hover:not(:disabled) {
+  background: rgba(255, 89, 89, 0.1) !important;
+}
+
+/* Secondary (grey): strip bg so it reads as ghost; grey icon, bg-hover on hover. */
+.ui-scope .ui-btn-icon-only.ui-btn-secondary {
+  background: transparent !important;
+  color: var(--ui-text-secondary);
+}
+.ui-scope .ui-btn-icon-only.ui-btn-secondary:hover:not(:disabled) {
+  background: var(--ui-bg-hover) !important;
+  color: var(--ui-text-primary);
+}
+
+/* Secondary-color (green outline → ghost green when iconOnly). */
+.ui-scope .ui-btn-icon-only.ui-btn-secondary-color {
+  background: transparent !important;
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-btn-icon-only.ui-btn-secondary-color:hover:not(:disabled) {
+  background: rgba(100, 139, 160, 0.1) !important;
+}
+
+/* Tertiary (grey ghost — already transparent, just restate for clarity). */
+.ui-scope .ui-btn-icon-only.ui-btn-tertiary {
+  background: transparent !important;
+  color: var(--ui-text-secondary);
+}
+.ui-scope .ui-btn-icon-only.ui-btn-tertiary:hover:not(:disabled) {
+  background: var(--ui-bg-hover) !important;
+  color: var(--ui-text-primary);
+}
+
+/* Tertiary-color (green ghost). */
+.ui-scope .ui-btn-icon-only.ui-btn-tertiary-color {
+  background: transparent !important;
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-btn-icon-only.ui-btn-tertiary-color:hover:not(:disabled) {
+  background: rgba(100, 139, 160, 0.1) !important;
+}
+
+/* ---------- Hierarchy: Primary (NS green) ---------- */
+.ui-scope .ui-btn-primary {
+  background: var(--ui-brand-500);
+  color: #fff;
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-btn-primary:hover:not(:disabled) {
+  background: var(--ui-brand-600);
+  border-color: var(--ui-brand-600);
+}
+.ui-scope .ui-btn-primary:active:not(:disabled) {
+  background: var(--ui-brand-700);
+  border-color: var(--ui-brand-700);
+}
+
+/* ---------- Hierarchy: Secondary (grey outline) ---------- */
+.ui-scope .ui-btn-secondary {
+  background: var(--ui-bg-secondary);
+  color: var(--ui-text-primary);
+  border-color: var(--ui-border-primary);
+}
+.ui-scope .ui-btn-secondary:hover:not(:disabled) {
+  background: var(--ui-bg-hover);
+  border-color: var(--ui-border-secondary);
+}
+.ui-scope .ui-btn-secondary:active:not(:disabled) {
+  background: var(--ui-bg-active);
+}
+
+/* ---------- Hierarchy: Secondary color (green outline) ---------- */
+.ui-scope .ui-btn-secondary-color {
+  background: transparent;
+  color: var(--ui-brand-500);
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-btn-secondary-color:hover:not(:disabled) {
+  background: rgba(100, 139, 160, 0.08);
+}
+.ui-scope .ui-btn-secondary-color:active:not(:disabled) {
+  background: rgba(100, 139, 160, 0.16);
+}
+
+/* ---------- Hierarchy: Tertiary (ghost grey) ---------- */
+.ui-scope .ui-btn-tertiary {
+  background: transparent;
+  color: var(--ui-text-secondary);
+  border-color: transparent;
+}
+.ui-scope .ui-btn-tertiary:hover:not(:disabled) {
+  background: var(--ui-bg-hover);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-btn-tertiary:active:not(:disabled) {
+  background: var(--ui-bg-active);
+}
+
+/* ---------- Hierarchy: Tertiary color (ghost green) ---------- */
+.ui-scope .ui-btn-tertiary-color {
+  background: transparent;
+  color: var(--ui-brand-500);
+  border-color: transparent;
+}
+.ui-scope .ui-btn-tertiary-color:hover:not(:disabled) {
+  background: rgba(100, 139, 160, 0.08);
+}
+.ui-scope .ui-btn-tertiary-color:active:not(:disabled) {
+  background: rgba(100, 139, 160, 0.16);
+}
+
+/* ---------- Hierarchy: Destructive ---------- */
+.ui-scope .ui-btn-destructive {
+  background: var(--ui-error-500);
+  color: #fff;
+  border-color: var(--ui-error-500);
+}
+.ui-scope .ui-btn-destructive:hover:not(:disabled) {
+  background: var(--ui-error-600);
+  border-color: var(--ui-error-600);
+}

@@ -1,0 +1,85 @@
+/* v2 Toggle switch — scoped under .ui-scope. */
+
+.ui-scope .ui-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-8);
+  cursor: pointer;
+  user-select: none;
+}
+.ui-scope .ui-toggle-disabled { cursor: not-allowed; opacity: 0.5; }
+
+.ui-scope .ui-toggle-switch {
+  position: relative;
+  flex-shrink: 0;
+}
+.ui-scope .ui-toggle input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: inherit;
+}
+
+.ui-scope .ui-toggle-track {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ui-grey-700);
+  border-radius: var(--ui-radius-full);
+  transition: background var(--ui-transition);
+  padding: 2px;
+}
+.ui-scope .ui-toggle-sm .ui-toggle-track { width: 32px; height: 20px; }
+.ui-scope .ui-toggle-md .ui-toggle-track { width: 40px; height: 24px; }
+
+.ui-scope .ui-toggle-thumb {
+  display: block;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: var(--ui-shadow-sm);
+  transition: transform var(--ui-transition);
+}
+.ui-scope .ui-toggle-sm .ui-toggle-thumb { width: 16px; height: 16px; }
+.ui-scope .ui-toggle-md .ui-toggle-thumb { width: 20px; height: 20px; }
+
+/* Checked */
+.ui-scope .ui-toggle input:checked ~ .ui-toggle-track {
+  background: var(--ui-brand-500);
+}
+.ui-scope .ui-toggle-sm input:checked ~ .ui-toggle-track .ui-toggle-thumb {
+  transform: translateX(12px);
+}
+.ui-scope .ui-toggle-md input:checked ~ .ui-toggle-track .ui-toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* Hover */
+.ui-scope .ui-toggle:not(.ui-toggle-disabled):hover .ui-toggle-track {
+  background: var(--ui-grey-600);
+}
+.ui-scope .ui-toggle:not(.ui-toggle-disabled):hover input:checked ~ .ui-toggle-track {
+  background: var(--ui-brand-600);
+}
+
+/* Focus */
+.ui-scope .ui-toggle input:focus-visible ~ .ui-toggle-track {
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* Text */
+.ui-scope .ui-toggle-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+}
+.ui-scope .ui-toggle-label {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-toggle-hint {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-tertiary);
+}

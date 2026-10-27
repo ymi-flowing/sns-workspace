@@ -1,0 +1,420 @@
+/* ================================================================
+   SNS — Design tokens
+   ----------------------------------------------------------------
+   SNS Multi Family Management brand kit. Scoped to `.ui-scope`.
+   Deep Blue primary (#1e40af) + Tailwind slate greys to match the
+   existing SNS Daily Report dashboard. Full brand reference:
+   `ROI/SNS Daily Report/SNS_STYLEGUIDE.md`.
+
+   Token philosophy:
+     - SNS brand palette: Deep Blue primary, Bright Blue accent,
+       slate greys. Dark-first UI (same as NS). Light mode via
+       `[data-theme="light"]`.
+     - Keep Untitled UI's structural scales (typography, spacing,
+       radii, shadows, button sizes) from the shared Template.
+   ================================================================ */
+
+.ui-scope {
+  /* ---------- Color: brand (SNS steel blue) ---------- */
+  --ui-brand-50:  #f1f5f8;
+  --ui-brand-100: #dde6ec;
+  --ui-brand-200: #c0d1dc;
+  --ui-brand-300: #9fb7c6;
+  --ui-brand-400: #83a3b6;   /* lighter — accent / hover tints */
+  --ui-brand-500: #648ba0;   /* primary — SNS steel blue */
+  --ui-brand-600: #4e7488;   /* hover */
+  --ui-brand-700: #3e5c6d;   /* pressed */
+  --ui-brand-800: #334a58;
+  --ui-brand-900: #2a3c47;
+
+  /* ---------- Color: neutral (Tailwind slate, 11-step expansion) ---------- */
+  --ui-grey-25:   #f8fafc;
+  --ui-grey-50:   #f1f5f9;
+  --ui-grey-100:  #e2e8f0;
+  --ui-grey-200:  #cbd5e1;
+  --ui-grey-300:  #94a3b8;
+  --ui-grey-400:  #64748b;
+  --ui-grey-500:  #475569;
+  --ui-grey-600:  #334155;
+  --ui-grey-700:  #1e293b;   /* slate-800 — surface tier */
+  --ui-grey-800:  #0f172a;   /* slate-900 — SNS primary bg */
+  --ui-grey-850:  #0a0f1a;   /* card tier */
+  --ui-grey-900:  #050a14;   /* deepest tier */
+  --ui-grey-950:  #020510;
+
+  /* ---------- Color: semantic ---------- */
+  --ui-success-500: #17b26a;
+  --ui-success-600: #099250;
+  --ui-warn-500:    #f79009;
+  --ui-warn-600:    #dc6803;
+  --ui-error-500:   #ff5959;
+  --ui-error-600:   #d93838;
+
+  /* ---------- Semantic aliases (what components consume) ---------- */
+  --ui-bg-primary:    var(--ui-grey-800);
+  --ui-bg-secondary:  var(--ui-grey-850);
+  --ui-bg-tertiary:   var(--ui-grey-900);
+  --ui-bg-hover:      rgba(255, 255, 255, 0.04);
+  --ui-bg-active:     rgba(255, 255, 255, 0.08);
+
+  --ui-border-primary:   var(--ui-grey-700);
+  --ui-border-secondary: var(--ui-grey-600);
+  --ui-border-focus:     var(--ui-brand-500);
+
+  --ui-text-primary:   #fcfcfd;
+  --ui-text-secondary: #cecfd2;
+  --ui-text-tertiary:  var(--ui-grey-400);
+  --ui-text-disabled:  var(--ui-grey-600);
+  --ui-text-brand:     var(--ui-brand-500);
+  --ui-text-error:     var(--ui-error-500);
+
+  /* ---------- Typography ---------- */
+  --ui-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --ui-fs-xs:         0.75rem;      /* 12 */
+  --ui-fs-sm:         0.875rem;     /* 14 */
+  --ui-fs-md:         1rem;         /* 16 */
+  --ui-fs-lg:         1.125rem;     /* 18 */
+  --ui-fs-xl:         1.25rem;      /* 20 */
+  --ui-fs-display-xs: 1.5rem;       /* 24 */
+  --ui-fs-display-sm: 1.875rem;     /* 30 */
+  --ui-fs-display-md: 2.25rem;      /* 36 */
+
+  --ui-lh-xs:         1.125rem;     /* 18 */
+  --ui-lh-sm:         1.25rem;      /* 20 */
+  --ui-lh-md:         1.5rem;       /* 24 */
+  --ui-lh-lg:         1.75rem;      /* 28 */
+  --ui-lh-xl:         1.875rem;     /* 30 */
+  --ui-lh-display-xs: 2rem;         /* 32 */
+  --ui-lh-display-sm: 2.375rem;     /* 38 */
+
+  --ui-fw-regular:  400;
+  --ui-fw-medium:   500;
+  --ui-fw-semibold: 600;
+  --ui-fw-bold:     700;
+
+  /* ---------- Spacing (4-px grid) ---------- */
+  --ui-sp-0:   0;
+  --ui-sp-2:   0.125rem;   /* 2 */
+  --ui-sp-4:   0.25rem;    /* 4 */
+  --ui-sp-6:   0.375rem;   /* 6 */
+  --ui-sp-8:   0.5rem;     /* 8 */
+  --ui-sp-10:  0.625rem;   /* 10 */
+  --ui-sp-12:  0.75rem;    /* 12 */
+  --ui-sp-16:  1rem;       /* 16 */
+  --ui-sp-20:  1.25rem;    /* 20 */
+  --ui-sp-24:  1.5rem;     /* 24 */
+  --ui-sp-32:  2rem;       /* 32 */
+  --ui-sp-40:  2.5rem;     /* 40 */
+  --ui-sp-48:  3rem;       /* 48 */
+  --ui-sp-64:  4rem;       /* 64 */
+  --ui-sp-80:  5rem;       /* 80 */
+  --ui-sp-96:  6rem;       /* 96 */
+
+  /* ---------- Radii ---------- */
+  --ui-radius-xs:   0.25rem;   /* 4  */
+  --ui-radius-sm:   0.375rem;  /* 6  */
+  --ui-radius-md:   0.5rem;    /* 8  (default) */
+  --ui-radius-lg:   0.625rem;  /* 10 */
+  --ui-radius-xl:   0.75rem;   /* 12 */
+  --ui-radius-2xl:  1rem;      /* 16 */
+  --ui-radius-3xl:  1.25rem;   /* 20 */
+  --ui-radius-full: 9999px;
+
+  /* ---------- Shadows (6-step elevation ramp) ---------- */
+  --ui-shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-md:  0 4px 8px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-lg:  0 12px 16px -4px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-xl:  0 20px 24px -4px rgba(0, 0, 0, 0.5), 0 8px 8px -4px rgba(0, 0, 0, 0.3);
+  --ui-shadow-2xl: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
+
+  /* ---------- Focus ring (SNS steel blue, 24% alpha) ---------- */
+  --ui-focus-ring: 0 0 0 4px rgba(100, 139, 160, 0.24);
+
+  /* ---------- Transitions ---------- */
+  --ui-transition-fast: 100ms ease;
+  --ui-transition:      150ms ease;
+  --ui-transition-slow: 200ms ease;
+
+  /* ---------- Base shell styles ---------- */
+  background: var(--ui-bg-primary);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  min-height: 100%;
+  padding: var(--ui-sp-32) var(--ui-sp-24);
+  /* Belt + braces: no stray child should ever force the page wider than
+     the viewport. Wide tables / charts should scroll inside their own
+     container, not blow out the layout. */
+  overflow-x: hidden;
+}
+
+/* -----------------------------------------------------------
+   Mobile — tighter padding + smaller display headings
+   ----------------------------------------------------------- */
+@media (max-width: 640px) {
+  .ui-scope {
+    padding: var(--ui-sp-16) var(--ui-sp-16);
+  }
+  .ui-scope .ui-display-sm {
+    font-size: var(--ui-fs-xl);
+    line-height: var(--ui-lh-xl);
+  }
+  .ui-scope .ui-display-xs {
+    font-size: var(--ui-fs-lg);
+    line-height: var(--ui-lh-lg);
+  }
+}
+
+/* -----------------------------------------------------------
+   SVG chart safety — never bleed past the parent card width.
+   ----------------------------------------------------------- */
+.ui-scope .ui-chart svg {
+  max-width: 100%;
+}
+.ui-scope .ui-chart-canvas {
+  max-width: 100%;
+}
+
+/* -----------------------------------------------------------
+   Lab-table (faux-table used by the StatusBadge demo) —
+   horizontal scroll inside its own container on mobile instead of
+   pushing the page out.
+   ----------------------------------------------------------- */
+@media (max-width: 640px) {
+  .ui-scope .ui-faux-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Reset for things inside the scope so v1 globals don't leak visually. */
+.ui-scope h1, .ui-scope h2, .ui-scope h3, .ui-scope h4,
+.ui-scope p, .ui-scope ul, .ui-scope ol {
+  margin: 0;
+}
+
+/* -----------------------------------------------------------
+   Floating-style scrollbars applied to every scrollable
+   surface inside the v2 scope (tables, dropdown lists,
+   modal bodies, textareas, generic overflow containers).
+   Transparent track so the bar reads as "floating" over
+   the card bg, thin grey thumb that lightens on hover.
+   ----------------------------------------------------------- */
+.ui-scope,
+.ui-scope *,
+.ui-scope *::before,
+.ui-scope *::after {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-border-primary) transparent;
+}
+.ui-scope *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+.ui-scope *::-webkit-scrollbar-track { background: transparent; }
+.ui-scope *::-webkit-scrollbar-thumb {
+  background: var(--ui-border-primary);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.ui-scope *::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-border-secondary);
+  background-clip: padding-box;
+}
+.ui-scope *::-webkit-scrollbar-corner { background: transparent; }
+
+/* ================================================================
+   Typography utilities (prefixed with .ui-)
+   ================================================================ */
+.ui-scope .ui-display-sm { font-size: var(--ui-fs-display-sm); line-height: var(--ui-lh-display-sm); font-weight: var(--ui-fw-semibold); letter-spacing: -0.02em; }
+.ui-scope .ui-display-xs { font-size: var(--ui-fs-display-xs); line-height: var(--ui-lh-display-xs); font-weight: var(--ui-fw-semibold); letter-spacing: -0.02em; }
+.ui-scope .ui-text-xl    { font-size: var(--ui-fs-xl);         line-height: var(--ui-lh-xl); }
+.ui-scope .ui-text-lg    { font-size: var(--ui-fs-lg);         line-height: var(--ui-lh-lg); }
+.ui-scope .ui-text-md    { font-size: var(--ui-fs-md);         line-height: var(--ui-lh-md); }
+.ui-scope .ui-text-sm    { font-size: var(--ui-fs-sm);         line-height: var(--ui-lh-sm); }
+.ui-scope .ui-text-xs    { font-size: var(--ui-fs-xs);         line-height: var(--ui-lh-xs); }
+
+.ui-scope .ui-fw-regular  { font-weight: var(--ui-fw-regular); }
+.ui-scope .ui-fw-medium   { font-weight: var(--ui-fw-medium); }
+.ui-scope .ui-fw-semibold { font-weight: var(--ui-fw-semibold); }
+.ui-scope .ui-fw-bold     { font-weight: var(--ui-fw-bold); }
+
+.ui-scope .ui-text-brand     { color: var(--ui-text-brand); }
+.ui-scope .ui-text-secondary { color: var(--ui-text-secondary); }
+.ui-scope .ui-text-tertiary  { color: var(--ui-text-tertiary); }
+.ui-scope .ui-text-error     { color: var(--ui-text-error); }
+
+/* Simple inline debug swatch — used by the placeholder page */
+.ui-scope .ui-swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--ui-sp-12);
+  margin-top: var(--ui-sp-16);
+}
+.ui-scope .ui-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-4);
+  padding: var(--ui-sp-12);
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-border-primary);
+  background: var(--ui-bg-secondary);
+}
+.ui-scope .ui-swatch-chip {
+  height: 48px;
+  border-radius: var(--ui-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.ui-scope .ui-swatch-label {
+  font-size: var(--ui-fs-xs);
+  color: var(--ui-text-tertiary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Lab-only faux table used by the StatusBadge demo. Not a real UI component —
+   it's just enough chrome to show how the dropdown feels inside a row. */
+.ui-scope .ui-faux-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--ui-fs-sm);
+}
+.ui-scope .ui-faux-table th {
+  text-align: left;
+  padding: var(--ui-sp-8) var(--ui-sp-12);
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--ui-border-primary);
+  font-weight: var(--ui-fw-semibold);
+}
+.ui-scope .ui-faux-table td {
+  padding: var(--ui-sp-10) var(--ui-sp-12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+}
+.ui-scope .ui-faux-table tbody tr:last-child td { border-bottom: none; }
+.ui-scope .ui-faux-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ================================================================
+   Light theme overrides
+   ----------------------------------------------------------------
+   Toggle via [data-theme="light"] on the .ui-scope element. Grey
+   scale + brand ramp stay the same; the semantic aliases that
+   actually drive the look (bgs, text colors, borders, hover
+   tints, shadows) are the ones that swap. */
+.ui-scope[data-theme="light"] {
+  /* Backgrounds swap from NS warm greys to a crisp white/off-white stack */
+  --ui-bg-primary:    #f5f6f7;   /* page */
+  --ui-bg-secondary:  #ffffff;   /* cards */
+  --ui-bg-tertiary:   #f2f4f7;   /* inputs, deeper surfaces */
+  --ui-bg-hover:      rgba(16, 24, 40, 0.04);
+  --ui-bg-active:     rgba(16, 24, 40, 0.08);
+
+  /* Borders go from mid-dark grey to soft near-neutral */
+  --ui-border-primary:   #e4e7ec;
+  --ui-border-secondary: #d0d5dd;
+
+  /* Text flips to dark-on-light */
+  --ui-text-primary:   #101828;
+  --ui-text-secondary: #475467;
+  --ui-text-tertiary:  #667085;
+  --ui-text-disabled:  #d0d5dd;
+
+  /* Shadows need to be much softer on a white bg */
+  --ui-shadow-xs:  0 1px 2px rgba(16, 24, 40, 0.05);
+  --ui-shadow-sm:  0 1px 3px rgba(16, 24, 40, 0.1), 0 1px 2px rgba(16, 24, 40, 0.06);
+  --ui-shadow-md:  0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --ui-shadow-lg:  0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --ui-shadow-xl:  0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03);
+  --ui-shadow-2xl: 0 24px 48px -12px rgba(16, 24, 40, 0.18);
+}
+
+/* A couple of components bake in dark-mode `rgba(255, 255, 255, 0.N)`
+   literals for subtle lines + separators — those are invisible on white.
+   Explicit overrides inside the light scope. */
+.ui-scope[data-theme="light"] .ui-table tbody td {
+  border-bottom-color: rgba(16, 24, 40, 0.04);
+}
+.ui-scope[data-theme="light"] .ui-faux-table td {
+  border-bottom-color: rgba(16, 24, 40, 0.04);
+}
+.ui-scope[data-theme="light"] .ui-dropdown-divider {
+  background: var(--ui-border-primary);
+}
+.ui-scope[data-theme="light"] .ui-table-foot td,
+.ui-scope[data-theme="light"] .ui-table-foot th {
+  background: var(--ui-bg-tertiary);
+}
+.ui-scope[data-theme="light"] .ui-tooltip,
+.ui-scope[data-theme="light"] .ui-chart-tt,
+.ui-scope[data-theme="light"] .ui-donut-tt {
+  background: #ffffff;
+  color: var(--ui-text-primary);
+}
+.ui-scope[data-theme="light"] .ui-tooltip-arrow {
+  background: #ffffff;
+}
+.ui-scope[data-theme="light"] .ui-toast .ui-alert {
+  background: #ffffff;
+}
+/* Scrollbar thumb needs a visible color on light bg */
+.ui-scope[data-theme="light"] *::-webkit-scrollbar-thumb {
+  background: var(--ui-border-secondary);
+}
+.ui-scope[data-theme="light"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-text-tertiary);
+}
+
+/* ---- Hardcoded --ui-grey-700/900/950 lookups → light equivalents ----
+   A handful of components bake in dark greys directly. Rebind here. */
+
+/* Table header */
+.ui-scope[data-theme="light"] .ui-table thead th {
+  background: var(--ui-bg-tertiary);
+  color: var(--ui-text-tertiary);
+  border-bottom-color: var(--ui-border-primary);
+}
+/* Disabled inputs */
+.ui-scope[data-theme="light"] .ui-input-disabled.ui-input-group,
+.ui-scope[data-theme="light"] .ui-textarea-disabled,
+.ui-scope[data-theme="light"] .ui-select:disabled {
+  background: var(--ui-grey-100);
+}
+/* KPI / interactive-card hover */
+.ui-scope[data-theme="light"] .ui-card-interactive:hover {
+  background: var(--ui-bg-tertiary);
+}
+/* Toggle switch track (off state) */
+.ui-scope[data-theme="light"] .ui-toggle-track {
+  background: var(--ui-grey-300);
+}
+.ui-scope[data-theme="light"] .ui-toggle:not(.ui-toggle-disabled):hover .ui-toggle-track {
+  background: var(--ui-grey-400);
+}
+/* Dropdown + select menus — the dropdown panels inherit --ui-bg-secondary
+   via semantic alias; dark hardcoded shadows need to inherit light shadow
+   too (already handled by shadow-lg being rebound). But the status-badge
+   menu is PORTALED to document.body — see status-badge.tsx which passes
+   data-theme through on the portal node. */
+.ui-scope[data-theme="light"] .ui-dropdown-menu,
+.ui-scope[data-theme="light"] .ui-select-list,
+.ui-scope[data-theme="light"] .ui-dp-popover,
+.ui-scope[data-theme="light"] .ui-status-menu {
+  background: var(--ui-bg-secondary);
+  border-color: var(--ui-border-primary);
+}
+.ui-scope[data-theme="light"] .ui-dropdown-item:hover:not(:disabled),
+.ui-scope[data-theme="light"] .ui-select-option:hover,
+.ui-scope[data-theme="light"] .ui-select-option-current,
+.ui-scope[data-theme="light"] .ui-status-menu-item:hover,
+.ui-scope[data-theme="light"] .ui-status-menu-item-current {
+  background: var(--ui-bg-hover);
+}

@@ -1,0 +1,181 @@
+/* v2 Checkbox + Radio — scoped under .ui-scope. */
+
+/* ---------- Checkbox ---------- */
+.ui-scope .ui-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ui-sp-8);
+  cursor: pointer;
+  user-select: none;
+}
+.ui-scope .ui-check-disabled { cursor: not-allowed; opacity: 0.5; }
+
+.ui-scope .ui-check-input-wrap {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ui-scope .ui-check input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: inherit;
+  margin: 0;
+}
+.ui-scope .ui-check-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ui-border-primary);
+  background: var(--ui-bg-tertiary);
+  border-radius: var(--ui-radius-xs);
+  transition: all var(--ui-transition);
+  color: #fff;
+}
+.ui-scope .ui-check-sm .ui-check-box { width: 16px; height: 16px; }
+.ui-scope .ui-check-md .ui-check-box { width: 20px; height: 20px; }
+.ui-scope .ui-check-box svg { width: 12px; height: 12px; opacity: 0; transition: opacity var(--ui-transition); }
+.ui-scope .ui-check-md .ui-check-box svg { width: 14px; height: 14px; }
+.ui-scope .ui-check-tick, .ui-scope .ui-check-dash { display: none; }
+
+/* Hover (not disabled) */
+.ui-scope .ui-check:not(.ui-check-disabled):hover .ui-check-box {
+  border-color: var(--ui-brand-500);
+}
+
+/* Checked */
+.ui-scope .ui-check input:checked + .ui-check-box {
+  background: var(--ui-brand-500);
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-check input:checked + .ui-check-box svg {
+  opacity: 1;
+}
+.ui-scope .ui-check input:checked + .ui-check-box .ui-check-tick {
+  display: block;
+}
+
+/* Indeterminate — the ref effect sets input.indeterminate, we toggle visuals */
+.ui-scope .ui-check input:indeterminate + .ui-check-box {
+  background: var(--ui-brand-500);
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-check input:indeterminate + .ui-check-box svg { opacity: 1; }
+.ui-scope .ui-check input:indeterminate + .ui-check-box .ui-check-dash { display: block; }
+
+/* Focus */
+.ui-scope .ui-check input:focus-visible + .ui-check-box {
+  box-shadow: var(--ui-focus-ring);
+}
+
+/* Label + hint */
+.ui-scope .ui-check-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+  min-width: 0;
+}
+.ui-scope .ui-check-label {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-check-hint {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-tertiary);
+}
+
+/* ---------- Radio ---------- */
+.ui-scope .ui-radio-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.ui-scope .ui-radio-legend {
+  font-size: var(--ui-fs-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+  margin-bottom: var(--ui-sp-8);
+  padding: 0;
+}
+.ui-scope .ui-radio-list { display: flex; }
+.ui-scope .ui-radio-list-vertical { flex-direction: column; gap: var(--ui-sp-8); }
+.ui-scope .ui-radio-list-horizontal { flex-direction: row; gap: var(--ui-sp-16); flex-wrap: wrap; }
+
+.ui-scope .ui-radio {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ui-sp-8);
+  cursor: pointer;
+  user-select: none;
+}
+.ui-scope .ui-radio-disabled { cursor: not-allowed; opacity: 0.5; }
+
+.ui-scope .ui-radio-input-wrap {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ui-scope .ui-radio input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: inherit;
+  margin: 0;
+}
+.ui-scope .ui-radio-dot {
+  display: inline-block;
+  border: 1px solid var(--ui-border-primary);
+  background: var(--ui-bg-tertiary);
+  border-radius: 50%;
+  transition: all var(--ui-transition);
+  position: relative;
+}
+.ui-scope .ui-radio-sm .ui-radio-dot { width: 16px; height: 16px; }
+.ui-scope .ui-radio-md .ui-radio-dot { width: 20px; height: 20px; }
+.ui-scope .ui-radio-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all var(--ui-transition);
+}
+.ui-scope .ui-radio-md .ui-radio-dot::after { inset: 4px; }
+
+.ui-scope .ui-radio:not(.ui-radio-disabled):hover .ui-radio-dot {
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-radio input:checked + .ui-radio-dot {
+  background: var(--ui-brand-500);
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-radio input:checked + .ui-radio-dot::after {
+  opacity: 1;
+  transform: scale(1);
+}
+.ui-scope .ui-radio input:focus-visible + .ui-radio-dot {
+  box-shadow: var(--ui-focus-ring);
+}
+
+.ui-scope .ui-radio-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+}
+.ui-scope .ui-radio-label {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-radio-hint {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-tertiary);
+}

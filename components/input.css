@@ -1,0 +1,158 @@
+/* v2 Input + Textarea — scoped under .ui-scope. */
+
+/* ---------- Field wrapper (label + hint/error) ---------- */
+.ui-scope .ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-6);
+  min-width: 0;
+  width: 100%;
+}
+.ui-scope .ui-field-label {
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  font-weight: var(--ui-fw-medium);
+  color: var(--ui-text-primary);
+}
+.ui-scope .ui-field-hint {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-field-error {
+  font-size: var(--ui-fs-xs);
+  line-height: var(--ui-lh-xs);
+  color: var(--ui-error-500);
+}
+
+/* ---------- Input group (wraps icons + input) ---------- */
+.ui-scope .ui-input-group {
+  display: flex;
+  align-items: stretch;
+  background: var(--ui-bg-tertiary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  transition:
+    border-color var(--ui-transition),
+    box-shadow var(--ui-transition);
+}
+.ui-scope .ui-input-group:hover:not(.ui-input-disabled) {
+  border-color: var(--ui-border-secondary);
+}
+.ui-scope .ui-input-group:focus-within:not(.ui-input-disabled) {
+  border-color: var(--ui-brand-500);
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-input-error.ui-input-group {
+  border-color: var(--ui-error-500);
+}
+.ui-scope .ui-input-error.ui-input-group:focus-within {
+  box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.2);
+}
+.ui-scope .ui-input-disabled.ui-input-group {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--ui-grey-900);
+}
+
+/* ---------- Input element ---------- */
+.ui-scope .ui-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  padding: 0 var(--ui-sp-12);
+}
+.ui-scope .ui-input::placeholder {
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-input:disabled {
+  cursor: not-allowed;
+  color: var(--ui-text-disabled);
+}
+
+/* ---------- Sizes ---------- */
+.ui-scope .ui-input-sm .ui-input {
+  height: 36px;
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+}
+.ui-scope .ui-input-md .ui-input {
+  height: 40px;
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+}
+
+/* When a leading affix is present, kill the input's left padding so the
+   affix+input gap looks even. Same deal on the trailing side. */
+.ui-scope .ui-input-with-leading .ui-input,
+.ui-scope .ui-input-with-prefix .ui-input {
+  padding-left: var(--ui-sp-8);
+}
+.ui-scope .ui-input-with-trailing .ui-input,
+.ui-scope .ui-input-with-suffix .ui-input {
+  padding-right: var(--ui-sp-8);
+}
+
+/* ---------- Icon affixes (SVG slots) ---------- */
+.ui-scope .ui-input-affix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ui-text-tertiary);
+  flex-shrink: 0;
+}
+.ui-scope .ui-input-affix svg {
+  width: 16px;
+  height: 16px;
+}
+.ui-scope .ui-input-affix-leading { padding: 0 var(--ui-sp-4) 0 var(--ui-sp-12); }
+.ui-scope .ui-input-affix-trailing { padding: 0 var(--ui-sp-12) 0 var(--ui-sp-4); }
+
+/* ---------- Text affixes (prefix/suffix like "$" or ".com") ---------- */
+.ui-scope .ui-input-text {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-sm);
+  flex-shrink: 0;
+}
+.ui-scope .ui-input-text-leading  { padding: 0 var(--ui-sp-4) 0 var(--ui-sp-12); }
+.ui-scope .ui-input-text-trailing { padding: 0 var(--ui-sp-12) 0 var(--ui-sp-4); }
+
+/* ---------- Textarea ---------- */
+.ui-scope .ui-textarea {
+  width: 100%;
+  min-height: 96px;
+  background: var(--ui-bg-tertiary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-md);
+  padding: var(--ui-sp-10) var(--ui-sp-12);
+  resize: vertical;
+  outline: none;
+  transition:
+    border-color var(--ui-transition),
+    box-shadow var(--ui-transition);
+}
+.ui-scope .ui-textarea::placeholder {
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-textarea:hover:not(:disabled) { border-color: var(--ui-border-secondary); }
+.ui-scope .ui-textarea:focus:not(:disabled) {
+  border-color: var(--ui-brand-500);
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-textarea-error { border-color: var(--ui-error-500); }
+.ui-scope .ui-textarea-error:focus { box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.2); }
+.ui-scope .ui-textarea-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--ui-grey-900);
+}

@@ -1,0 +1,286 @@
+﻿/* v2 Dropdown + Select — scoped under .ui-scope. */
+
+/* ---------- Dropdown ---------- */
+.ui-scope .ui-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.ui-scope .ui-dropdown-trigger { display: inline-block; width: 100%; }
+
+.ui-scope .ui-dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--ui-sp-4));
+  z-index: 30;
+  min-width: 200px;
+  padding: var(--ui-sp-6);
+  background: var(--ui-bg-secondary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  box-shadow: var(--ui-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+  animation: ui-dd-open 120ms ease;
+}
+.ui-scope .ui-dropdown-menu-left  { left: 0; }
+.ui-scope .ui-dropdown-menu-right { right: 0; }
+
+.ui-scope .ui-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-sp-8);
+  background: transparent;
+  border: none;
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  text-align: left;
+  padding: var(--ui-sp-8) var(--ui-sp-10);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  width: 100%;
+  transition: background var(--ui-transition);
+}
+.ui-scope .ui-dropdown-item:hover:not(:disabled) { background: var(--ui-bg-hover); }
+.ui-scope .ui-dropdown-item:disabled { opacity: 0.45; cursor: not-allowed; }
+.ui-scope .ui-dropdown-item-danger { color: var(--ui-error-500); }
+.ui-scope .ui-dropdown-item-danger:hover:not(:disabled) { background: rgba(255, 89, 89, 0.1); }
+.ui-scope .ui-dropdown-item-label { flex: 1; min-width: 0; }
+.ui-scope .ui-dropdown-item-icon { display: inline-flex; align-items: center; color: var(--ui-text-tertiary); }
+.ui-scope .ui-dropdown-item-icon svg { width: 16px; height: 16px; }
+.ui-scope .ui-dropdown-item-danger .ui-dropdown-item-icon { color: var(--ui-error-500); }
+
+.ui-scope .ui-dropdown-divider {
+  height: 1px;
+  background: var(--ui-border-primary);
+  margin: var(--ui-sp-4) 0;
+}
+
+@keyframes ui-dd-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Select (form field) ---------- */
+.ui-scope .ui-select {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-sp-8);
+  width: 100%;
+  padding: 0 var(--ui-sp-12);
+  background: var(--ui-bg-tertiary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-md);
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--ui-transition), box-shadow var(--ui-transition);
+}
+.ui-scope .ui-select-sm { height: 36px; }
+.ui-scope .ui-select-md { height: 40px; }
+
+.ui-scope .ui-select:hover:not(:disabled) { border-color: var(--ui-border-secondary); }
+.ui-scope .ui-select.ui-select-open,
+.ui-scope .ui-select:focus-visible {
+  outline: none;
+  border-color: var(--ui-brand-500);
+  box-shadow: var(--ui-focus-ring);
+}
+.ui-scope .ui-select-error { border-color: var(--ui-error-500); }
+.ui-scope .ui-select-error.ui-select-open,
+.ui-scope .ui-select-error:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255, 89, 89, 0.2);
+}
+.ui-scope .ui-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--ui-grey-900);
+}
+
+.ui-scope .ui-select-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-scope .ui-select-placeholder { color: var(--ui-text-tertiary); }
+.ui-scope .ui-select-caret {
+  display: inline-flex;
+  color: var(--ui-text-tertiary);
+  flex-shrink: 0;
+}
+.ui-scope .ui-select-caret svg { width: 16px; height: 16px; }
+
+/* Select-specific menu list */
+.ui-scope .ui-select-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+  max-height: 260px;
+  overflow-y: auto;
+}
+.ui-scope .ui-select-option {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-sp-8);
+  padding: var(--ui-sp-8) var(--ui-sp-10);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  color: var(--ui-text-primary);
+  font-size: var(--ui-fs-sm);
+}
+.ui-scope .ui-select-option:hover { background: var(--ui-bg-hover); }
+.ui-scope .ui-select-option-current { background: var(--ui-bg-hover); }
+.ui-scope .ui-select-option-disabled { opacity: 0.45; cursor: not-allowed; }
+.ui-scope .ui-select-option-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-2);
+}
+.ui-scope .ui-select-option-label { color: var(--ui-text-primary); }
+.ui-scope .ui-select-option-hint {
+  font-size: var(--ui-fs-xs);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-select-option-check {
+  color: var(--ui-brand-500);
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.ui-scope .ui-select-option-check svg { width: 16px; height: 16px; }
+
+/* Make the dropdown menu wrap the whole select width when Select triggers it */
+.ui-scope .ui-field .ui-dropdown { width: 100%; display: block; }
+.ui-scope .ui-field .ui-dropdown-menu { width: 100%; min-width: 0; }
+
+/* ---------- Search input inside Select / MultiSelect menu ---------- */
+.ui-scope .ui-select-search {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-sp-6);
+  padding: var(--ui-sp-6) var(--ui-sp-8);
+  margin-bottom: var(--ui-sp-4);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-bg-tertiary);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-select-search svg { width: 14px; height: 14px; flex-shrink: 0; }
+.ui-scope .ui-select-search input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--ui-text-primary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  padding: 0;
+}
+.ui-scope .ui-select-search input::placeholder { color: var(--ui-text-tertiary); }
+
+/* ---------- Action buttons row (Select all / Clear) ---------- */
+.ui-scope .ui-select-actions {
+  display: flex;
+  gap: var(--ui-sp-4);
+  padding: var(--ui-sp-2) 0 var(--ui-sp-6);
+  border-bottom: 1px solid var(--ui-border-primary);
+  margin-bottom: var(--ui-sp-4);
+}
+.ui-scope .ui-select-action {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--ui-border-primary);
+  color: var(--ui-text-secondary);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-xs);
+  font-weight: var(--ui-fw-medium);
+  padding: var(--ui-sp-4) var(--ui-sp-8);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  transition: all var(--ui-transition);
+}
+.ui-scope .ui-select-action:hover:not(:disabled) {
+  color: var(--ui-text-primary);
+  border-color: var(--ui-brand-500);
+}
+.ui-scope .ui-select-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Empty "no results" row inside the menu */
+.ui-scope .ui-select-empty {
+  padding: var(--ui-sp-12) var(--ui-sp-10);
+  text-align: center;
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-xs);
+  list-style: none;
+}
+
+/* ---------- Chip variant trigger ---------- */
+.ui-scope .ui-select-chips {
+  /* Chips rendered inline grow the trigger vertically; drop the fixed height. */
+  min-height: 40px;
+  height: auto;
+  padding: var(--ui-sp-4) var(--ui-sp-6);
+  flex-wrap: wrap;
+}
+.ui-scope .ui-select-chip-row {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-sp-4);
+  align-items: center;
+}
+.ui-scope .ui-select-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-4);
+  padding: var(--ui-sp-2) var(--ui-sp-6);
+  background: rgba(100, 139, 160, 0.14);
+  color: var(--ui-brand-500);
+  border-radius: var(--ui-radius-sm);
+  font-size: var(--ui-fs-xs);
+  font-weight: var(--ui-fw-medium);
+  box-shadow: inset 0 0 0 1px rgba(100, 139, 160, 0.3);
+  max-width: 180px;
+}
+.ui-scope .ui-select-chip-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-scope .ui-select-chip-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--ui-radius-xs);
+  opacity: 0.75;
+  font-size: 1em;
+}
+.ui-scope .ui-select-chip-remove:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.15);
+}
+.ui-scope .ui-select-chip-more {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--ui-sp-2) var(--ui-sp-6);
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-xs);
+  font-weight: var(--ui-fw-medium);
+}

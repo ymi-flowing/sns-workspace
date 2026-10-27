@@ -1,0 +1,174 @@
+﻿/* v2 Table — scoped under .ui-scope. */
+
+.ui-scope .ui-table-wrap {
+  background: var(--ui-bg-secondary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-lg);
+  overflow: auto;
+}
+/* When no explicit height is set, let the table size to its content. */
+
+.ui-scope .ui-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-fs-sm);
+  line-height: var(--ui-lh-sm);
+  color: var(--ui-text-primary);
+}
+
+/* ---------- Head ---------- */
+.ui-scope .ui-table thead th {
+  background: var(--ui-grey-900);
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-xs);
+  font-weight: var(--ui-fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: left;
+  padding: var(--ui-sp-12) var(--ui-sp-16);
+  border-bottom: 1px solid var(--ui-border-primary);
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+}
+.ui-scope .ui-table-sticky thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.ui-scope .ui-table-header-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ui-sp-6);
+}
+/* Sort chevron — small, gentle, hidden unless the column is sorted OR the
+   header is hovered. Keeps the header strip quiet by default. */
+.ui-scope .ui-table-header-inner svg {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  transition: opacity var(--ui-transition);
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-table-sortable { cursor: pointer; }
+.ui-scope .ui-table-sortable:hover .ui-table-header-inner svg,
+.ui-scope .ui-table-sorted .ui-table-header-inner svg {
+  opacity: 1;
+}
+.ui-scope .ui-table-sortable:hover { color: var(--ui-text-primary); }
+.ui-scope .ui-table-sorted,
+.ui-scope .ui-table-sorted .ui-table-header-inner svg {
+  color: var(--ui-brand-500);
+}
+
+/* ---------- Body ---------- */
+.ui-scope .ui-table tbody td {
+  padding: var(--ui-sp-12) var(--ui-sp-16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+}
+.ui-scope .ui-table tbody tr:last-child td { border-bottom: none; }
+.ui-scope .ui-table tbody tr {
+  transition: background var(--ui-transition);
+}
+.ui-scope .ui-table-row-clickable { cursor: pointer; }
+.ui-scope .ui-table-row-clickable:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.ui-scope .ui-table-row-selected {
+  background: rgba(100, 139, 160, 0.06);
+}
+.ui-scope .ui-table-row-selected:hover {
+  background: rgba(100, 139, 160, 0.1);
+}
+
+/* ---------- Checkbox column — perfectly centered on the row baseline ---------- */
+.ui-scope .ui-table-select {
+  width: 44px;
+  padding: var(--ui-sp-12) var(--ui-sp-16) !important;
+  text-align: center;
+  vertical-align: middle;
+}
+.ui-scope .ui-table-select .ui-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ui-scope .ui-table-select .ui-check-input-wrap {
+  margin-top: 0;
+}
+
+/* ---------- Empty / loading state cell ---------- */
+.ui-scope .ui-table-state {
+  padding: var(--ui-sp-32) var(--ui-sp-16) !important;
+  text-align: center;
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-table-skeleton {
+  display: inline-flex;
+  gap: var(--ui-sp-8);
+  align-items: center;
+}
+.ui-scope .ui-table-skeleton::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--ui-brand-500);
+  border-top-color: transparent;
+  animation: ui-spin 700ms linear infinite;
+}
+@keyframes ui-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Footer (non-sticky, renders OUTSIDE the scroll area) ---------- */
+.ui-scope .ui-table-summary {
+  margin-top: var(--ui-sp-12);
+  padding: var(--ui-sp-16) var(--ui-sp-20);
+  background: var(--ui-bg-secondary);
+  border: 1px solid var(--ui-border-primary);
+  border-radius: var(--ui-radius-lg);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ui-sp-24);
+  align-items: center;
+}
+.ui-scope .ui-table-summary-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-sp-4);
+  min-width: 0;
+}
+.ui-scope .ui-table-summary-cell > span:first-child {
+  font-size: var(--ui-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ui-text-tertiary);
+}
+.ui-scope .ui-table-summary-cell > span:last-child {
+  font-size: var(--ui-fs-lg);
+  font-weight: var(--ui-fw-semibold);
+  color: var(--ui-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.ui-scope .ui-table-summary-cell-accent > span:last-child {
+  color: var(--ui-brand-500);
+}
+.ui-scope .ui-table-summary-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--ui-border-primary);
+}
+.ui-scope .ui-table-summary-empty {
+  color: var(--ui-text-tertiary);
+  font-size: var(--ui-fs-sm);
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------- Numeric column alignment helper (consumers can add this via column.className) ---------- */
+.ui-scope .ui-table td[style*="text-align: right"],
+.ui-scope .ui-table th[style*="text-align: right"] {
+  font-variant-numeric: tabular-nums;
+}
