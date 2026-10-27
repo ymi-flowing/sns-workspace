@@ -50,15 +50,19 @@
   --ui-error-500:   #ff5959;
   --ui-error-600:   #d93838;
 
-  /* ---------- Semantic aliases (what components consume) ---------- */
-  --ui-bg-primary:    var(--ui-grey-800);
-  --ui-bg-secondary:  var(--ui-grey-850);
-  --ui-bg-tertiary:   var(--ui-grey-900);
-  --ui-bg-hover:      rgba(255, 255, 255, 0.04);
-  --ui-bg-active:     rgba(255, 255, 255, 0.08);
+  /* ---------- Semantic aliases (what components consume) ----------
+     SNS layering: page = darkest, cards sit LIGHTER above it. Matches
+     the current SNS dashboard (bg-slate-900 page, bg-slate-800 cards).
+     That inversion from the NS pattern is intentional — SNS cards
+     should float above the page, not recede into it. */
+  --ui-bg-primary:    var(--ui-grey-800);   /* #0f172a — page, darkest */
+  --ui-bg-secondary:  var(--ui-grey-700);   /* #1e293b — cards, lighter than page */
+  --ui-bg-tertiary:   var(--ui-grey-600);   /* #334155 — section headers, Portfolio col, lightest */
+  --ui-bg-hover:      rgba(255, 255, 255, 0.05);
+  --ui-bg-active:     rgba(255, 255, 255, 0.09);
 
-  --ui-border-primary:   var(--ui-grey-700);
-  --ui-border-secondary: var(--ui-grey-600);
+  --ui-border-primary:   var(--ui-grey-600);
+  --ui-border-secondary: var(--ui-grey-500);
   --ui-border-focus:     var(--ui-brand-500);
 
   --ui-text-primary:   #fcfcfd;

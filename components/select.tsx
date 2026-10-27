@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Dropdown + Select — menu primitive and form-field select built on top.
 //
 // Dropdown: generic trigger + menu. Pass children (any JSX, rendered inside

@@ -12,41 +12,36 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 24px;
+  min-width: 22px;
   height: 20px;
-  padding: 0 var(--ui-sp-6);
+  padding: 0 var(--ui-sp-8);
   border-radius: var(--ui-radius-full);
-  background: #dc2626;
-  color: #fff;
+  background: rgba(220, 38, 38, 0.18);
+  color: #fca5a5;
   font-size: 11px;
   font-weight: var(--ui-fw-bold);
   font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
-.ui-scope .ui-alerts-count-chip-amber { background: #f59e0b; }
+.ui-scope .ui-alerts-count-chip-amber { background: rgba(245, 158, 11, 0.18); color: #fcd34d; }
+
+/* Light-mode: deeper text, softer bg to keep contrast crisp */
+.ui-scope[data-theme="light"] .ui-alerts-count-chip { background: #fee2e2; color: #b91c1c; }
+.ui-scope[data-theme="light"] .ui-alerts-count-chip-amber { background: #fef3c7; color: #b45309; }
 
 /* ---------- Filter row ---------- */
 
 .ui-scope .ui-alerts-filters {
-  padding: var(--ui-sp-12) var(--ui-sp-24);
-  display: flex;
-  flex-direction: column;
-  gap: var(--ui-sp-12);
-  border-bottom: 1px solid var(--ui-border-primary);
-  background: var(--ui-bg-tertiary);
+  padding: var(--ui-sp-16) var(--ui-sp-24);
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(240px, 2fr);
+  gap: var(--ui-sp-16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--ui-bg-secondary);
 }
 
-.ui-scope .ui-alerts-filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ui-sp-6);
-}
-
-.ui-scope .ui-alerts-filter-label {
-  font-size: 10px;
-  font-weight: var(--ui-fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ui-text-tertiary);
+.ui-scope .ui-alerts-filter-field {
+  min-width: 0; /* allow grid children to shrink */
 }
 
 /* ---------- Alerts table ---------- */
@@ -65,13 +60,13 @@
   top: 0;
   background: var(--ui-bg-secondary);
   text-align: left;
-  padding: var(--ui-sp-8) var(--ui-sp-12);
+  padding: var(--ui-sp-10) var(--ui-sp-12);
   font-size: 10px;
   font-weight: var(--ui-fw-bold);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ui-text-tertiary);
-  border-bottom: 1px solid var(--ui-border-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 1;
 }
 
@@ -83,8 +78,8 @@
 }
 
 .ui-scope .ui-alerts-table tbody td {
-  padding: var(--ui-sp-10) var(--ui-sp-12);
-  border-bottom: 1px solid var(--ui-border-primary);
+  padding: var(--ui-sp-12) var(--ui-sp-12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
   vertical-align: middle;
 }
 .ui-scope .ui-alerts-table tbody tr:last-child td {
@@ -94,10 +89,25 @@
 .ui-scope .ui-alerts-prop {
   color: var(--ui-text-primary);
   font-weight: var(--ui-fw-semibold);
-  min-width: 72px;
+  min-width: 64px;
+  white-space: nowrap;
 }
-.ui-scope .ui-alerts-cat { color: var(--ui-text-secondary); white-space: nowrap; }
-.ui-scope .ui-alerts-unit { color: var(--ui-text-primary); font-weight: var(--ui-fw-medium); min-width: 60px; }
+.ui-scope .ui-alerts-cat { color: var(--ui-text-secondary); white-space: nowrap; min-width: 108px; }
+.ui-scope .ui-alerts-unit { color: var(--ui-text-primary); font-weight: var(--ui-fw-medium); min-width: 56px; white-space: nowrap; }
+
+/* Resident — keep on one line, cap width so long names ellipsis instead of wrap */
+.ui-scope .ui-alerts-table td:nth-child(4),
+.ui-scope .ui-alerts-table th:nth-child(4) {
+  min-width: 96px;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Alert column (5th) — most of the width budget. Soft wrap allowed. */
+.ui-scope .ui-alerts-table td:nth-child(5),
+.ui-scope .ui-alerts-table th:nth-child(5) { min-width: 180px; }
 
 .ui-scope .ui-alerts-msg {
   display: inline-flex;
@@ -144,10 +154,15 @@
 /* ---------- Light theme overrides ---------- */
 
 .ui-scope[data-theme="light"] .ui-alerts-filters {
-  background: var(--ui-bg-tertiary);
+  background: var(--ui-bg-secondary);
+  border-bottom-color: var(--ui-border-primary);
 }
 .ui-scope[data-theme="light"] .ui-alerts-table thead th {
   background: var(--ui-bg-secondary);
+  border-bottom-color: var(--ui-border-primary);
+}
+.ui-scope[data-theme="light"] .ui-alerts-table tbody td {
+  border-bottom-color: rgba(16, 24, 40, 0.05);
 }
 .ui-scope[data-theme="light"] .ui-alerts-age-low  { color: var(--ui-brand-700); }
 .ui-scope[data-theme="light"] .ui-alerts-age-med  { color: #b45309; }

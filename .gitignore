@@ -32,3 +32,5 @@ tsconfig.tsbuildinfo
 
 # Claude session files
 .impeccable/
+.playwright-screens/
+.playwright-mcp/

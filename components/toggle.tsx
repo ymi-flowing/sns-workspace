@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Toggle switch — iOS-style slider for binary settings.
 // Sizes sm (32×20 track) · md (40×24 track).
 

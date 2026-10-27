@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Tooltip — hover-delayed floating label. Works for simple text labels
 // (icon-only buttons: "Refrescar") AND rich content (chart point payloads).
 //

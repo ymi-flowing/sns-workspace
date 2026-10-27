@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 StatusBadge — a Badge wearing the current status, with a trailing
 // chevron and a click-to-open dropdown of the 5 pipeline statuses.
 //

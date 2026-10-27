@@ -35,10 +35,11 @@
 }
 
 /* Sizes — max width of the dialog. */
-.ui-scope .ui-modal-sm, .ui-modal-sm { max-width: 400px; }
-.ui-scope .ui-modal-md, .ui-modal-md { max-width: 480px; }
-.ui-scope .ui-modal-lg, .ui-modal-lg { max-width: 544px; }
-.ui-scope .ui-modal-xl, .ui-modal-xl { max-width: 640px; }
+.ui-scope .ui-modal-sm, .ui-modal-sm   { max-width: 400px; }
+.ui-scope .ui-modal-md, .ui-modal-md   { max-width: 480px; }
+.ui-scope .ui-modal-lg, .ui-modal-lg   { max-width: 544px; }
+.ui-scope .ui-modal-xl, .ui-modal-xl   { max-width: 640px; }
+.ui-scope .ui-modal-xxl, .ui-modal-xxl { max-width: 820px; }
 
 /* ---------- Header ---------- */
 .ui-scope .ui-modal-header {

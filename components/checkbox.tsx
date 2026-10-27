@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Checkbox + Radio + RadioGroup — Untitled UI anatomy.
 // Checkbox supports indeterminate via a ref effect. Radio comes with a
 // RadioGroup wrapper that owns `name` + `value` + `onChange`. Both come

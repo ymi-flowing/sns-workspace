@@ -69,13 +69,13 @@
 .ui-scope .ui-matrix-metric-head {
   text-align: left !important;
   padding-left: var(--ui-sp-12) !important;
-  color: var(--ui-text-tertiary) !important;
-  font-weight: var(--ui-fw-semibold) !important;
+  color: var(--ui-text-secondary) !important;
+  font-weight: var(--ui-fw-bold) !important;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: 10px !important;
   min-width: 140px;
-  background: var(--ui-bg-secondary);
+  background: var(--ui-bg-tertiary);
 }
 
 .ui-scope .ui-matrix-portfolio-head,
@@ -102,9 +102,8 @@
   background: var(--ui-bg-hover);
 }
 
-/* Alt-row shading on cells; the sticky metric cell gets its own alt class so the
-   sticky background still obscures scroll content underneath. */
-.ui-scope .ui-matrix-row-alt td { background: rgba(255, 255, 255, 0.02); }
+/* Alt-row shading — bumped so odd/even rows read as distinct bands */
+.ui-scope .ui-matrix-row-alt td { background: rgba(255, 255, 255, 0.045); }
 
 /* Metric cell (sticky left) */
 .ui-scope .ui-matrix-metric-cell {
@@ -117,7 +116,12 @@
   min-width: 140px;
   white-space: nowrap;
 }
-.ui-scope .ui-matrix-metric-cell-alt { background: var(--ui-bg-tertiary); }
+/* Sticky metric column needs its own alt-row color because the sticky bg must
+   obscure what scrolls underneath — can't inherit from the body cell. Mix the
+   card bg with the same tint we apply to the body alt rows. */
+.ui-scope .ui-matrix-metric-cell-alt {
+  background: color-mix(in srgb, var(--ui-bg-secondary) 93%, white 7%);
+}
 
 /* Value cells */
 .ui-scope .ui-matrix-cell {
@@ -126,9 +130,10 @@
   transition: background var(--ui-transition-fast);
 }
 
-/* Alerted cell background — subtle red/blue tint matching the dashboard convention */
+/* Alerted cell — lighter blue tint in dark mode (matches dashboard's bg-blue-900/40).
+   The blue-on-navy mix reads as a clearly brighter cell against the row. */
 .ui-scope .ui-matrix-cell-alert {
-  background: rgba(220, 38, 38, 0.14) !important;
+  background: rgba(59, 130, 246, 0.28) !important;
 }
 
 .ui-scope .ui-matrix-cell-clickable {
@@ -147,13 +152,12 @@
   border-left: 1px solid var(--ui-border-primary);
 }
 
-/* Divider row — a thin colored band to separate metric groups */
+/* Divider row — slate-600 band, clearly visible against both surrounding rows */
 .ui-scope .ui-matrix-divider-row td {
   padding: 0;
   height: 6px;
-  background: var(--ui-bg-tertiary);
-  border-bottom: 1px solid var(--ui-border-primary);
-  border-top: 1px solid var(--ui-border-primary);
+  background: var(--ui-grey-500);
+  border: none;
 }
 
 /* Last row — no bottom border */
@@ -178,9 +182,11 @@
 
 /* ---------- Light-theme overrides ---------- */
 
-.ui-scope[data-theme="light"] .ui-matrix-row-alt td { background: rgba(16, 24, 40, 0.025); }
-.ui-scope[data-theme="light"] .ui-matrix-cell-alert { background: rgba(220, 38, 38, 0.10) !important; }
+.ui-scope[data-theme="light"] .ui-matrix-row-alt td { background: rgba(16, 24, 40, 0.035); }
+.ui-scope[data-theme="light"] .ui-matrix-metric-cell-alt { background: #eef1f5; }
+.ui-scope[data-theme="light"] .ui-matrix-cell-alert { background: #fee2e2 !important; }
 .ui-scope[data-theme="light"] .ui-matrix-cell-clickable:hover { background: rgba(100, 139, 160, 0.14); }
+.ui-scope[data-theme="light"] .ui-matrix-divider-row td { background: var(--ui-grey-200); }
 
 /* Light-mode regional tints — slightly stronger text, softer bg */
 .ui-scope[data-theme="light"] .ui-matrix-group-purple { background: rgba(139, 92, 246, 0.10); color: #6d28d9; }

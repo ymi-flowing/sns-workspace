@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 charts — pure-SVG LineChart + DonutChart designed to match the v2 vibe:
 // dark card bg, brand-green primary, subtle grid, tabular numerals, soft area
 // gradient. No chart library — the shapes are simple enough that owning them

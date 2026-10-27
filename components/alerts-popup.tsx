@@ -1,3 +1,5 @@
+﻿'use client';
+
 // AlertsPopup — reusable popup-card for showing a filterable list of alerts.
 //
 // Composition: Modal (overlay + rounded card chrome + X close) + ChipGroup
@@ -8,7 +10,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import { Modal, ModalHeader, ModalBody } from './modal';
-import { ChipGroup, type ChipOption } from './chip-group';
+import { Select, MultiSelect, type SelectOption } from './select';
 import './alerts-popup.css';
 
 export interface AlertItem {
@@ -39,34 +41,34 @@ export function AlertsPopup({
   dotColor = 'red',
   emptyMessage = 'No alerts match the current filters.',
 }: AlertsPopupProps): React.ReactElement {
-  const [selectedProps, setSelectedProps] = useState<string[]>([]);
+  const [selectedProperty, setSelectedProperty] = useState<string | null>(null);
   const [selectedCats, setSelectedCats] = useState<string[]>([]);
 
   // Reset filters whenever the popup is reopened so stale filter state doesn't
   // bleed between sessions.
   useEffect(() => {
     if (open) {
-      setSelectedProps([]);
+      setSelectedProperty(null);
       setSelectedCats([]);
     }
   }, [open]);
 
-  const propertyOptions: ChipOption[] = useMemo(() => {
+  const propertyOptions: SelectOption[] = useMemo(() => {
     const set = new Set(alerts.map((a) => a.property));
     return Array.from(set).sort().map((p) => ({ value: p, label: p }));
   }, [alerts]);
 
-  const categoryOptions: ChipOption[] = useMemo(() => {
+  const categoryOptions: SelectOption[] = useMemo(() => {
     const set = new Set(alerts.map((a) => a.category));
     return Array.from(set).sort().map((c) => ({ value: c, label: c }));
   }, [alerts]);
 
   const filtered = useMemo(() => {
     return alerts.filter((a) =>
-      (selectedProps.length === 0 || selectedProps.includes(a.property)) &&
+      (!selectedProperty || a.property === selectedProperty) &&
       (selectedCats.length === 0 || selectedCats.includes(a.category))
     );
-  }, [alerts, selectedProps, selectedCats]);
+  }, [alerts, selectedProperty, selectedCats]);
 
   const dotCls = dotColor === 'amber' ? 'ui-alerts-dot-amber' : 'ui-alerts-dot-red';
   const chipCls = dotColor === 'amber'
@@ -80,33 +82,38 @@ export function AlertsPopup({
     </span>
   );
 
+  const headerTone = dotColor === 'amber' ? 'warn' : 'error';
+
   return (
-    <Modal open={open} onClose={onClose} size="lg">
-      <ModalHeader title={titleEl} onClose={onClose} />
+    <Modal open={open} onClose={onClose} size="xxl">
+      <ModalHeader
+        title={titleEl}
+        icon={<IconAlertTriangle />}
+        tone={headerTone}
+        onClose={onClose}
+      />
 
       <div className="ui-alerts-filters">
-        {propertyOptions.length > 0 && (
-          <div className="ui-alerts-filter-group">
-            <span className="ui-alerts-filter-label">Properties</span>
-            <ChipGroup
-              options={propertyOptions}
-              value={selectedProps}
-              onChange={setSelectedProps}
-              size="sm"
-            />
-          </div>
-        )}
-        {categoryOptions.length > 0 && (
-          <div className="ui-alerts-filter-group">
-            <span className="ui-alerts-filter-label">Categories</span>
-            <ChipGroup
-              options={categoryOptions}
-              value={selectedCats}
-              onChange={setSelectedCats}
-              size="sm"
-            />
-          </div>
-        )}
+        <div className="ui-alerts-filter-field">
+          <Select
+            label="Property"
+            placeholder="All properties"
+            options={propertyOptions}
+            value={selectedProperty}
+            onChange={setSelectedProperty}
+            size="sm"
+          />
+        </div>
+        <div className="ui-alerts-filter-field">
+          <MultiSelect
+            label="Alert type"
+            placeholder="All categories"
+            options={categoryOptions}
+            value={selectedCats}
+            onChange={setSelectedCats}
+            size="sm"
+          />
+        </div>
       </div>
 
       <ModalBody>
@@ -160,4 +167,14 @@ function ageBadgeClass(days?: number): string {
   if (days >= 14) return 'ui-alerts-age-high';
   if (days >= 7)  return 'ui-alerts-age-med';
   return 'ui-alerts-age-low';
+}
+
+function IconAlertTriangle(): React.ReactElement {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+      <line x1="12" y1="9" x2="12" y2="13" />
+      <line x1="12" y1="17" x2="12.01" y2="17" />
+    </svg>
+  );
 }

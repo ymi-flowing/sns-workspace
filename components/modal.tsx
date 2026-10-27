@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Modal — Untitled UI style: dark scrim, centered dialog with shadow-xl,
 // optional featured-icon header, body, footer. Compose with ModalHeader /
 // ModalBody / ModalFooter for structure.
@@ -15,7 +17,7 @@
 import { useEffect } from 'react';
 import './modal.css';
 
-type ModalSize = 'sm' | 'md' | 'lg' | 'xl';
+type ModalSize = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 export interface ModalProps {
   open: boolean;

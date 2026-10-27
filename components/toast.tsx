@@ -1,3 +1,5 @@
+﻿'use client';
+
 // v2 Toast — ephemeral floating messages that stack top-right. Wrap your
 // subtree in <ToastProvider> and call useToast() to push messages:
 //
