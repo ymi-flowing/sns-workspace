@@ -3,7 +3,10 @@
 .ui-scope .ui-matrix-wrap {
   overflow-x: auto;
   overflow-y: visible;
-  margin: calc(var(--ui-sp-4) * -1);  /* trim the outer padding away so the table flush-fills a Card */
+  /* Flush-fill the parent Card: cancel its left/right/bottom padding so the
+     table runs to card edges. Caller is expected to use <Card padding="sm">
+     (12px); other paddings would need their own wrap variant. */
+  margin: 0 calc(var(--ui-sp-12) * -1) calc(var(--ui-sp-12) * -1);
 }
 
 .ui-scope .ui-matrix {
@@ -89,38 +92,36 @@
   border-left: 1px solid var(--ui-border-primary);
 }
 
-/* ---------- Body rows ---------- */
+/* ---------- Body rows ----------
+   Single flat background: every row/cell inherits the card bg. No stripes.
+   Hairline row separators only (very subtle) so the eye can still track rows.
+   Hover brightens the whole row; a hovered cell gets a touch brighter still. */
 
 .ui-scope .ui-matrix-row td,
 .ui-scope .ui-matrix-row th {
   padding: var(--ui-sp-8) var(--ui-sp-6);
-  border-bottom: 1px solid var(--ui-border-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background var(--ui-transition-fast);
 }
 
 .ui-scope .ui-matrix-row:hover td,
 .ui-scope .ui-matrix-row:hover .ui-matrix-metric-cell {
-  background: var(--ui-bg-hover);
+  background: rgba(255, 255, 255, 0.045);
+}
+.ui-scope .ui-matrix-row:hover .ui-matrix-cell:hover {
+  background: rgba(255, 255, 255, 0.09);
 }
 
-/* Alt-row shading — bumped so odd/even rows read as distinct bands */
-.ui-scope .ui-matrix-row-alt td { background: rgba(255, 255, 255, 0.045); }
-
-/* Metric cell (sticky left) */
+/* Metric cell (sticky left) — same bg as card, so it blends when scrolling */
 .ui-scope .ui-matrix-metric-cell {
   text-align: left;
   padding-left: var(--ui-sp-12) !important;
   color: var(--ui-text-primary);
   font-weight: var(--ui-fw-medium);
   background: var(--ui-bg-secondary);
-  border-right: 1px solid var(--ui-border-primary);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   min-width: 140px;
   white-space: nowrap;
-}
-/* Sticky metric column needs its own alt-row color because the sticky bg must
-   obscure what scrolls underneath — can't inherit from the body cell. Mix the
-   card bg with the same tint we apply to the body alt rows. */
-.ui-scope .ui-matrix-metric-cell-alt {
-  background: color-mix(in srgb, var(--ui-bg-secondary) 93%, white 7%);
 }
 
 /* Value cells */
@@ -182,8 +183,20 @@
 
 /* ---------- Light-theme overrides ---------- */
 
-.ui-scope[data-theme="light"] .ui-matrix-row-alt td { background: rgba(16, 24, 40, 0.035); }
-.ui-scope[data-theme="light"] .ui-matrix-metric-cell-alt { background: #eef1f5; }
+.ui-scope[data-theme="light"] .ui-matrix-row td,
+.ui-scope[data-theme="light"] .ui-matrix-row th {
+  border-bottom-color: rgba(16, 24, 40, 0.06);
+}
+.ui-scope[data-theme="light"] .ui-matrix-row:hover td,
+.ui-scope[data-theme="light"] .ui-matrix-row:hover .ui-matrix-metric-cell {
+  background: rgba(16, 24, 40, 0.04);
+}
+.ui-scope[data-theme="light"] .ui-matrix-row:hover .ui-matrix-cell:hover {
+  background: rgba(16, 24, 40, 0.08);
+}
+.ui-scope[data-theme="light"] .ui-matrix-metric-cell {
+  border-right-color: rgba(16, 24, 40, 0.08);
+}
 .ui-scope[data-theme="light"] .ui-matrix-cell-alert { background: #fee2e2 !important; }
 .ui-scope[data-theme="light"] .ui-matrix-cell-clickable:hover { background: rgba(100, 139, 160, 0.14); }
 .ui-scope[data-theme="light"] .ui-matrix-divider-row td { background: var(--ui-grey-200); }

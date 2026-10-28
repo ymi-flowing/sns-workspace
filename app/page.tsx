@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Card, CardHeader } from '../components';
 import { PortfolioMatrix } from './_sections/portfolio-matrix';
 import { Traffic } from './_sections/traffic';
+import { ExpiringLeases } from './_sections/expiring-leases';
 import { loadSnapshot } from '../lib/data';
 
 // Full ISR for the whole route: revalidate the fetch cache every 60s.
@@ -62,6 +63,7 @@ export default async function Home(): Promise<React.ReactElement> {
 
         {snapshot && <PortfolioMatrix snapshot={snapshot} />}
         {snapshot && <Traffic snapshot={snapshot} />}
+        {snapshot && <ExpiringLeases snapshot={snapshot} />}
       </div>
     </div>
   );

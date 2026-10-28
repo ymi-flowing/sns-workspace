@@ -29,6 +29,13 @@ const REGION_TONE: Record<string, GroupTone> = {
   'Ft. Lauderdale': 'rose',
 };
 
+/** Occupancy thresholds matching the current dashboard's palette. */
+function occupancyColorClass(pct: number): string {
+  if (pct >= 95) return 'ui-matrix-text-success';
+  if (pct >= 90) return 'ui-matrix-text-warn';
+  return 'ui-matrix-text-error';
+}
+
 export interface PortfolioMatrixProps {
   snapshot: DashboardSnapshot;
 }
@@ -118,11 +125,17 @@ export function PortfolioMatrix({ snapshot }: PortfolioMatrixProps): React.React
 
     { key: 'div1', label: '', isDivider: true },
 
-    { key: 'occupancy', label: 'Occupancy', color: 'ui-matrix-text-success', isPercent: true,
+    { key: 'occupancy', label: 'Occupancy', isPercent: true,
       getValue: (a) => (td[a as PropertyAbbr]?.occupancy ?? 0).toFixed(1),
+      getCellColor: (a) => occupancyColorClass(td[a as PropertyAbbr]?.occupancy ?? 0),
       getTotal: () => {
         const totalUnits = sum((p) => p.total);
         return totalUnits > 0 ? (sum((p) => p.occupied) / totalUnits * 100).toFixed(1) : '0.0';
+      },
+      getTotalColor: () => {
+        const totalUnits = sum((p) => p.total);
+        const pct = totalUnits > 0 ? sum((p) => p.occupied) / totalUnits * 100 : 0;
+        return occupancyColorClass(pct);
       } },
 
     { key: 'div2', label: '', isDivider: true },

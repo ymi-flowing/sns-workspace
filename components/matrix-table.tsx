@@ -41,6 +41,10 @@ export interface MatrixRow {
   getValue?: (abbr: string) => string | number;
   /** Compute the right-anchored portfolio total. Optional. */
   getTotal?: () => string | number;
+  /** Override `color` per cell. Return undefined to fall back to `color`. */
+  getCellColor?: (abbr: string) => string | undefined;
+  /** Override `color` for the portfolio total cell. */
+  getTotalColor?: () => string | undefined;
   /**
    * Return a non-empty string to flag the cell as alerted (bg tint). The string
    * is used as the native title tooltip. Return null for no alert.
@@ -103,7 +107,7 @@ export function MatrixTable({
         </thead>
 
         <tbody>
-          {rows.map((row, rowIdx) => {
+          {rows.map((row) => {
             if (row.isDivider) {
               return (
                 <tr key={row.key} className="ui-matrix-divider-row">
@@ -112,17 +116,12 @@ export function MatrixTable({
               );
             }
 
-            const isAlt = rowIdx % 2 === 1;
-            const rowClass = `ui-matrix-row${isAlt ? ' ui-matrix-row-alt' : ''}`;
             const suffix = row.isPercent ? '%' : '';
-            const colorClass = row.color ?? '';
+            const rowColorClass = row.color ?? '';
 
             return (
-              <tr key={row.key} className={rowClass}>
-                <th
-                  scope="row"
-                  className={`ui-matrix-metric-cell ui-matrix-sticky-left${isAlt ? ' ui-matrix-metric-cell-alt' : ''}`}
-                >
+              <tr key={row.key} className="ui-matrix-row">
+                <th scope="row" className="ui-matrix-metric-cell ui-matrix-sticky-left">
                   {row.label}
                 </th>
 
@@ -130,9 +129,10 @@ export function MatrixTable({
                   const raw = row.getValue?.(abbr) ?? 0;
                   const alertMsg = row.getAlert?.(abbr) ?? null;
                   const clickable = !!(row.popupCategory && onCellClick && Number(raw) > 0);
+                  const cellColor = row.getCellColor?.(abbr) ?? rowColorClass;
                   const cellClass = [
                     'ui-matrix-cell',
-                    colorClass,
+                    cellColor,
                     alertMsg ? 'ui-matrix-cell-alert' : '',
                     clickable ? 'ui-matrix-cell-clickable' : '',
                   ].filter(Boolean).join(' ');
@@ -153,7 +153,7 @@ export function MatrixTable({
                   );
                 })}
 
-                <td className={`ui-matrix-total-cell ${colorClass}`}>
+                <td className={`ui-matrix-total-cell ${row.getTotalColor?.() ?? rowColorClass}`}>
                   {row.getTotal ? `${row.getTotal()}${suffix}` : ''}
                 </td>
               </tr>
